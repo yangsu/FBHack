@@ -10,6 +10,7 @@
     "jade": "*",
     "socket.io": "~0.9.10",
     "redis": "~0.8.1",
-    "mongoose": "~3.2.1"
+    "mongoose": "~3.2.1",
+    "underscore": "~1.4.1"
   }
 }
