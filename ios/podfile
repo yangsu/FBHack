@@ -1,0 +1,4 @@
+platform :ios
+
+pod 'SocketRocket'
+pod 'ZBarSDK'
