@@ -18,13 +18,17 @@
 		E550813F161F8B6100026D32 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E550813E161F8B6100026D32 /* Default-568h@2x.png */; };
 		E5508142161F8B6100026D32 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5508141161F8B6100026D32 /* ViewController.m */; };
 		E5508145161F8B6200026D32 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5508143161F8B6200026D32 /* ViewController.xib */; };
+		E5508163161F93C200026D32 /* SocketCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = E5508162161F93C200026D32 /* SocketCenter.m */; };
+		F261C23496614EB98F9BC3A8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AC35024E7247AF84CB5FB1 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		35AC35024E7247AF84CB5FB1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD315B11856E4F6A8086CE2C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		E5508124161F8B6100026D32 /* FBHack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBHack.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E5508128161F8B6100026D32 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		E550812A161F8B6100026D32 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		E550812C161F8B6100026D32 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E5508128161F8B6100026D32 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E550812A161F8B6100026D32 /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E550812C161F8B6100026D32 /* CoreGraphics.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E5508130161F8B6100026D32 /* FBHack-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FBHack-Info.plist"; sourceTree = "<group>"; };
 		E5508132161F8B6100026D32 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E5508134161F8B6100026D32 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -37,6 +41,8 @@
 		E5508140161F8B6100026D32 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		E5508141161F8B6100026D32 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E5508144161F8B6200026D32 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		E5508161161F93C200026D32 /* SocketCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketCenter.h; sourceTree = "<group>"; };
+		E5508162161F93C200026D32 /* SocketCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketCenter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +53,7 @@
 				E5508129161F8B6100026D32 /* UIKit.framework in Frameworks */,
 				E550812B161F8B6100026D32 /* Foundation.framework in Frameworks */,
 				E550812D161F8B6100026D32 /* CoreGraphics.framework in Frameworks */,
+				F261C23496614EB98F9BC3A8 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +66,7 @@
 				E550812E161F8B6100026D32 /* FBHack */,
 				E5508127161F8B6100026D32 /* Frameworks */,
 				E5508125161F8B6100026D32 /* Products */,
+				CD315B11856E4F6A8086CE2C /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +84,7 @@
 				E5508128161F8B6100026D32 /* UIKit.framework */,
 				E550812A161F8B6100026D32 /* Foundation.framework */,
 				E550812C161F8B6100026D32 /* CoreGraphics.framework */,
+				35AC35024E7247AF84CB5FB1 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -83,11 +92,10 @@
 		E550812E161F8B6100026D32 /* FBHack */ = {
 			isa = PBXGroup;
 			children = (
-				E5508137161F8B6100026D32 /* AppDelegate.h */,
-				E5508138161F8B6100026D32 /* AppDelegate.m */,
-				E5508140161F8B6100026D32 /* ViewController.h */,
-				E5508141161F8B6100026D32 /* ViewController.m */,
-				E5508143161F8B6200026D32 /* ViewController.xib */,
+				E550815D161F92F300026D32 /* Network */,
+				E550815C161F92C800026D32 /* ViewControllers */,
+				E550815B161F90A300026D32 /* Views */,
+				E5508159161F909D00026D32 /* Application */,
 				E550812F161F8B6100026D32 /* Supporting Files */,
 			);
 			path = FBHack;
@@ -107,6 +115,41 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E5508159161F909D00026D32 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				E5508137161F8B6100026D32 /* AppDelegate.h */,
+				E5508138161F8B6100026D32 /* AppDelegate.m */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		E550815B161F90A300026D32 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		E550815C161F92C800026D32 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E5508140161F8B6100026D32 /* ViewController.h */,
+				E5508141161F8B6100026D32 /* ViewController.m */,
+				E5508143161F8B6200026D32 /* ViewController.xib */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E550815D161F92F300026D32 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E5508161161F93C200026D32 /* SocketCenter.h */,
+				E5508162161F93C200026D32 /* SocketCenter.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -117,6 +160,7 @@
 				E5508120161F8B6100026D32 /* Sources */,
 				E5508121161F8B6100026D32 /* Frameworks */,
 				E5508122161F8B6100026D32 /* Resources */,
+				8502B3592A8C4F7D88215E5B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,6 +212,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8502B3592A8C4F7D88215E5B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E5508120161F8B6100026D32 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -176,6 +237,7 @@
 				E5508135161F8B6100026D32 /* main.m in Sources */,
 				E5508139161F8B6100026D32 /* AppDelegate.m in Sources */,
 				E5508142161F8B6100026D32 /* ViewController.m in Sources */,
+				E5508163161F93C200026D32 /* SocketCenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +314,7 @@
 		};
 		E5508149161F8B6200026D32 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD315B11856E4F6A8086CE2C /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FBHack/FBHack-Prefix.pch";
@@ -263,6 +326,7 @@
 		};
 		E550814A161F8B6200026D32 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD315B11856E4F6A8086CE2C /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FBHack/FBHack-Prefix.pch";
@@ -291,6 +355,7 @@
 				E550814A161F8B6200026D32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

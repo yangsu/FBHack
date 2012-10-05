@@ -1,8 +1,14 @@
 
+SPEC CHECKSUMS: 
+  SocketRocket: a0529878e3c4c200196fa3a7e2ac1ef34aa33ffe
+  ZBarSDK: df14c7cb5af97d840eb722ff27202b7b6149d377
+
 COCOAPODS: 0.15.1
 
-DEPENDENCIES: []
+DEPENDENCIES: 
+- SocketRocket
+- ZBarSDK
 
-
-PODS: []
-
+PODS: 
+- SocketRocket (0.2.0)
+- ZBarSDK (1.2.2)
