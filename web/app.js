@@ -15,6 +15,14 @@ _ = require('underscore');
 app = express();
 contentReceiver = require('./services/receiver');
 sc = require('./lib/statusCode');
+// Set up redis
+redis = require('redis').createClient(
+  process.env.FBHACK_REDIS_PORT || 6379,
+  process.env.FBHACK_REDIS_HOST || '127.0.0.1'
+);
+redis.on('error', function (err) {
+  console.log('Redis error: ' + err);
+});
 
 app.configure(function(){
   app.set('port', process.env.FBHACK_PORT || 3000);
@@ -32,31 +40,40 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+// Utility function for loading the js files in a directory
+var loadDirectory = function (dir) {
+  return _.chain(fs.readdirSync(dir + '/'))
+    .filter(function (file) {
+      return (/^[\w\-\.]+\.js$/).test(file);
+    })
+    .reduce(function (memo, file) {
+      console.log('Loading ' + dir + '/' + file);
+      var newRoute = require('./' + dir + '/' + file.slice(0, -3));
+      return _.extend(memo, newRoute);
+    }, {})
+    .value();
+};
+
+/**
+ * Models
+ */
+Model = loadDirectory('models');
+
 /**
  * Routes
  */
-
-// Load all routes in ./routes/
-var routes = _.chain(fs.readdirSync('routes/'))
-  .filter(function (file) {
-    return (/^[\w\-\.]+\.js$/).test(file);
-  })
-  .reduce(function (memo, file) {
-    console.log('Loading route ' + file);
-    var newRoute = require('./routes/' + file.slice(0, -3));
-    return _.extend(memo, newRoute);
-  }, {})
-  .value();
+var routes = loadDirectory('routes');
 
 // homepage
 app.get('/', routes.index);
 
-// room creation and viewing
-app.get('/room/create', routes.create_room);
-app.get('/room/:id', routes.view_room);
+// Web app routes
+app.get('/album/create', routes.create_album_view);
+app.get('/album/:id', routes.view_album);
 
-// posting content to a room
-app.post('/room/:id', routes.receive_content);
+// API
+app.post('/album/create', routes.create_album);
+app.post('/album/:id', routes.receive_content);
 
 /**
  * Start Server

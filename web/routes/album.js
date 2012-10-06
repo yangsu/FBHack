@@ -1,13 +1,13 @@
 
 /**
- * GET /room/:id
+ * GET /album/:id
  */
-exports.view_room = function (req, res) {
+exports.view_album = function (req, res) {
   res.render('index', { title: 'Room' });
 };
 
 /**
- * POST /room/:id
+ * POST /album/:id
  * body of request should be json as:
  * {
  *  type: "EVENT_TYPE",
@@ -28,9 +28,24 @@ exports.receive_content = function (req, res) {
 };
 
 /**
- * GET /room/create
+ * GET /album/create
+ * Shows view for creating album
  */
-exports.create_room = function (req, res) {
+exports.create_album_view = function (req, res) {
   res.render('index', { title: 'Room' });
+};
+
+/**
+ * POST /album
+ * Actually creates a album on the backend
+ */
+exports.create_album = function (req, res) {
+  var aid = Model.Album.create();
+  if (aid) {
+    res.send(sc.OK, {
+      aid: aid
+    });
+  }
+  res.send(sc.INTERNAL_SERVER_ERROR);
 };
 
