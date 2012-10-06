@@ -65,4 +65,26 @@ FBHack.Collections.StreamCollection = Backbone.Collection.extend({
         }
     return this;
   }
+}, {
+  fromImgurAPI: function (cb) {
+    $.get('http://imgur.com/gallery/hot/page/1.json', function (data) {
+      var images = _.map(data, function (item) {
+	return _.extend(item, {
+	  src: 'http://i.imgur.com/' + item.hash + item.ext
+	});
+      }).slice(0, 50);
+      cb(new FBHack.Collections.StreamCollection(images));
+    });
+    return this;
+  },
+  fromOwnAPI: function (id, cb) {
+    $.get('http://23.23.206.35/api/album/' + id, function (data) {
+      var images = _.map(data, function (item) {
+	return {
+	  src: item.payload.link
+	};
+      });
+      cb(new FBHack.Collections.StreamCollection(images));
+    });
+  }
 });
