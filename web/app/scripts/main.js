@@ -31,6 +31,22 @@ window.FBHack = {
   // Backbone.history.navigate(href, true);
     //   }
     // });
+
+    // BAD STUFF
+    $('#create_album').submit(function () {
+      $.ajax({
+        type: 'POST',
+        url: '/api/album/create',
+        data: {
+          name: $('input#album_name').val()
+        },
+        success: function (data) {
+          Backbone.history.navigate('/#room/' + data.aid);
+        },
+        dataType: 'json'
+      });
+      return false;
+    });
   },
   getTemplate: function (templateName) {
     var path = 'scripts/templates/' + templateName + ".html";

@@ -6,14 +6,13 @@ exports.view_album = function (req, res) {
   var aid = req.params.id;
   // temporary album view for testing
   redis.get(aid, function (err, reply) {
-    var replyObj = JSON.parse(reply);
-    console.log(replyObj);
-    if (replyObj && replyObj.queue && _.isArray(replyObj.queue)) {
-      redis.mget(replyObj.queue, function (err, images) {
+    var album = JSON.parse(reply);
+    if (album && album.queue && _.isArray(album.queue)) {
+      redis.mget(album.queue, function (err, images) {
         var links = (images) ? _(images).map(function (img) {
           return JSON.parse(img).link;
         }) : [];
-        res.render('album', { title: 'Room', photos: links });
+        res.render('album', { aid: aid, title: album.name, photos: links });
       });
     } else {
       res.send(sc.INTERNAL_SERVER_ERROR);
@@ -56,7 +55,7 @@ exports.create_album_view = function (req, res) {
  * Actually creates a album on the backend
  */
 exports.create_album = function (req, res) {
-  var aid = Model.Album.create();
+  var aid = Model.Album.create(req.body.name);
   if (aid) {
     res.send(sc.OK, {
       aid: aid
@@ -75,8 +74,9 @@ exports.get_album_content = function (req, res) {
     , cursor = req.params.cursor;
   Model.Album.getContents(aid, cursor, function (err, contents) {
     if (err) {
-      res.send(BAD_REQUEST, err);
-      return;
+      console.log(err);
+      /*res.send(sc.BAD_REQUEST, err);
+      return;*/
     }
     res.json(contents);
   });

@@ -57,13 +57,15 @@ exports.Album = {
         var start = (cursor) ? album.queue.indexOf(cursor) + 1 : 0
           , end = start + retrieveLimit;
         redis.mget(album.queue.slice(start, end), function (err, images) {
-          var contents = _.zip(album.queue.slice(start, end), images)
+          var slice = album.queue.slice(start, end);
+          console.log(slice);
+          var contents = (slice && !_.isEmpty(slice)) ? _.zip(slice, images)
             .map(function (c) {
               return {
                 cid: c[0],
                 payload: JSON.parse(c[1])
               };
-            });
+            }) : [];
           cb(err, contents);
         });
       } else {

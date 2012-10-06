@@ -4,6 +4,10 @@ block content
   div#main.container(role="main")
     a(href='#init') #init
     a(href='#qr') #qr
+    form(id="create_album", action="#")
+      label(for="album_name") Album Name:
+      input(type="text", id="album_name", placeholder="Enter an album name")
+      button(id="create_album_submit", value="true") Create
     div#init.page
       div#stream
         div#stream_container

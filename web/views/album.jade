@@ -2,7 +2,8 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  div.modal
+    img(src="/qr/#{aid}")
   - photos.forEach(function(link) {
     img(src=link,style="max-height:100px;")
   - })
