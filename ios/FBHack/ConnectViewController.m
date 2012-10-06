@@ -59,6 +59,7 @@
 {
     RoomViewController *roomViewController = [[RoomViewController alloc] initWithNibName:@"RoomViewController" bundle:nil];
     roomViewController.roomID = @"a_ee9pUu0Jr";
+    roomViewController.title = @"Push Dis";
     [self.navigationController pushViewController:roomViewController animated:YES];
 }
 
@@ -93,15 +94,20 @@
 - (void)imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo:(NSDictionary*)info
 {
     NSString *roomID;
+    NSString *roomName;
+    
     ZBarSymbolSet *symbols = [info objectForKey: ZBarReaderControllerResults];
     for (ZBarSymbol *symbol in symbols) {
         NSLog(symbol.data);
-        roomID = symbol.data;
+        NSArray* result = [symbol.data componentsSeparatedByString: @":"];
+        roomID = [result objectAtIndex: 0];
+        roomName = [result objectAtIndex: 1];
     }
     
     [self dismissViewControllerAnimated:YES completion:^{
         RoomViewController *roomViewController = [[RoomViewController alloc] initWithNibName:@"RoomViewController" bundle:nil];
         roomViewController.roomID = roomID;
+        roomViewController.title = roomName;
         [self.navigationController pushViewController:roomViewController animated:YES];
     }];
    

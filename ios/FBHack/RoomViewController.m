@@ -13,6 +13,7 @@
 #import "ContentPusher.h"
 #import <QuartzCore/QuartzCore.h>
 #import "BButton+FontAwesome.h"
+#import "DACircularProgressView.h"
 
 #define kEventNewContent @"NEW_CONTENT"
 #define kEventSetLike @"SET_LIKES"
@@ -24,6 +25,7 @@
 @property (nonatomic, strong) UIImageView *selectedImageView;
 @property (nonatomic, copy) NSString *selectedImageURL;
 @property (nonatomic, strong) ContentPusher *contentPusher;
+@property (nonatomic, strong) DACircularProgressView *progressView;
 @end
 
 @implementation RoomViewController
@@ -31,12 +33,14 @@
 @synthesize photoButton = _photoButton;
 @synthesize youtubeButton = _youtubeButton;
 @synthesize cameraButton = _cameraButton;
+@synthesize helperView = _helperView;
 @synthesize roomID = _roomID;
 @synthesize socketCenter = _socketCenter;
 @synthesize imgurUploader = _imgurUploader;
 @synthesize selectedImageView = selectedImageView;
 @synthesize selectedImageURL = _selectedImageURL;
 @synthesize contentPusher = _contentPusher;
+@synthesize progressView = _progressView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -66,8 +70,10 @@
 
 -(void)uploadProgressedToPercentage:(CGFloat)percentage
 {
-    progressView.hidden = !( percentage > 0.0 && percentage < 1.0 );
-	progressView.progress = percentage;
+//    self.progressView.hidden = !( percentage > 0.0 && percentage < 1.0 );
+//    self.progres
+    [self.progressView setProgress:percentage animated:YES];
+    self.progressView.alpha = 1;
 }
 
 -(void)uploadFailedWithError:(NSError*)error
@@ -136,11 +142,11 @@
                                                        delay:0
                                                      options: UIViewAnimationCurveLinear
                                                   animations:^{
-                                                      self.helperView.alpha = 1;                                                        
+                                                      self.helperView.alpha = 1;
+                                                      self.progressView.alpha = 0;
                                                   }
                                                   completion:^(BOOL finished){
-                                                      NSLog(@"Done!");
-                                                      self.selectedImageURL = nil;
+                                                      [self.progressView setProgress:0 animated:NO];
                                                   }];
                              }];
         }
@@ -153,12 +159,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.title = @"Push";
-    
+        
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"noisy_grid"]];
     
-    self.selectedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 180, 180)];
+    self.selectedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 220, 220)];
     self.selectedImageView.layer.cornerRadius = 5.0;
     self.selectedImageView.layer.masksToBounds = YES;
     self.selectedImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -184,7 +188,9 @@
     [self.youtubeButton makeAwesomeWithIcon:FAIconFacetimeVideo];
 
 
-
+    self.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(280, 12, 20, 20)];
+    self.progressView.trackTintColor = [UIColor clearColor];
+    [self.navigationController.navigationBar addSubview:self.progressView];
     
     
     

@@ -1,21 +1,8 @@
 
-SPEC CHECKSUMS: 
-  AFNetworking: 8ebc0d45f8753337f280a427c6b9b707e2eecc94
-  PrettyKit: 44b8f06f3719579880d2e11cd6498b7464b3b0fa
-  Facebook-iOS-SDK: 5fc068ebfd8c8c9b0fad476bc36dbbf1fffeebc8
-  ZBarSDK: df14c7cb5af97d840eb722ff27202b7b6149d377
-  GData/Core: d984030fcaf984aa0a6b86f12346c58f4b34c5c5
-  SBJson: d917ef596960a977b6c20235a90810bc306a48f0
-  SocketRocket: a0529878e3c4c200196fa3a7e2ac1ef34aa33ffe
-  GData/YouTube: d984030fcaf984aa0a6b86f12346c58f4b34c5c5
-  UIDeviceAddition: aace2f602768bb2bece8b9a929b9fe5867f91c3f
-
 PODS: 
 - AFNetworking (1.0)
+- DACircularProgress (2.0.0)
 - Facebook-iOS-SDK (3.1.1)
-- GData/Core (1.9.1)
-- GData/YouTube (1.9.1): 
-  - GData/Core
 - PrettyKit (0.2.0)
 - SBJson (3.1.1)
 - SocketRocket (0.2.0)
@@ -24,8 +11,8 @@ PODS:
 
 DEPENDENCIES: 
 - AFNetworking
+- DACircularProgress
 - Facebook-iOS-SDK
-- GData/YouTube
 - PrettyKit
 - SBJson
 - SocketRocket
@@ -33,3 +20,13 @@ DEPENDENCIES:
 - ZBarSDK
 
 COCOAPODS: 0.15.1
+
+SPEC CHECKSUMS: 
+  UIDeviceAddition: aace2f602768bb2bece8b9a929b9fe5867f91c3f
+  ZBarSDK: df14c7cb5af97d840eb722ff27202b7b6149d377
+  AFNetworking: 8ebc0d45f8753337f280a427c6b9b707e2eecc94
+  SocketRocket: a0529878e3c4c200196fa3a7e2ac1ef34aa33ffe
+  SBJson: d917ef596960a977b6c20235a90810bc306a48f0
+  PrettyKit: 44b8f06f3719579880d2e11cd6498b7464b3b0fa
+  Facebook-iOS-SDK: 5fc068ebfd8c8c9b0fad476bc36dbbf1fffeebc8
+  DACircularProgress: 4bb3a1131f96175a43997889f8138690f7b32393
