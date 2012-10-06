@@ -14,7 +14,7 @@ var express = require('express')
 _ = require('underscore');
 app = express();
 contentReceiver = require('./services/receiver');
-sc = require('./lib/statusCode');
+sc = require('./lib/statuscode');
 // Set up redis
 redis = require('redis').createClient(
   process.env.FBHACK_REDIS_PORT || 6379,
