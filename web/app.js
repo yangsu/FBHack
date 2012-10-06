@@ -15,7 +15,8 @@ _ = require('underscore');
 app = express();
 contentReceiver = require('./services/receiver');
 sc = require('./lib/statuscode');
-io = require('socket.io').listen(app);
+server = http.createServer(app);
+io = require('socket.io').listen(server);
 
 // Set up redis
 redis = require('redis').createClient(
@@ -91,6 +92,6 @@ io.sockets.on('connection', function (socket) {
 /**
  * Start Server
  */
-http.createServer(app).listen(app.get('port'), function(){
+server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
