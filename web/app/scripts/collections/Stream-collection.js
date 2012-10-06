@@ -14,17 +14,6 @@ FBHack.Collections.StreamCollection = Backbone.Collection.extend({
         lastTopH = 0, lastBotH = 0,
         lastTopW = 0, lastBotW = 0,
         diff = 0, border, scalar;
-      for (i = 0; i < this.length; i++) {
-        img = this.at(i);
-        d = this.getRandomDimension();
-        max = (Math.random() >= 0.5) ? width : height;
-        if (img.width >= img.height) {
-          scalar = d/100*max/img.width;
-          w = d;
-          h = img.height * scalar / height * 100;
-        }
-
-
 
       for (i = 0; i < this.length; i++) {
           img = this.at(i);
