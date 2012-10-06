@@ -16,15 +16,16 @@ exports.view_album = function (req, res) {
  */
 exports.receive_content = function (req, res) {
   var event = req.body;
-  console.log(event);
   // Check for existence and validity of payload
   if (contentReceiver.validateEvent(event)) {
-    if (contentReceiver.handleEvent(event)) {
-      res.send(sc.OK);
-    }
-    res.send(sc.INTERNAL_SERVER_ERROR);
+    // Add album id
+    event.aid = req.params.id;
+    contentReceiver.handleEvent(event, res);
+    // If handleEvent does not send response, then something bad happened
+    //res.send(sc.INTERNAL_SERVER_ERROR);
+  } else {
+    res.send(sc.BAD_REQUEST);
   }
-  res.send(sc.BAD_REQUEST);
 };
 
 /**
