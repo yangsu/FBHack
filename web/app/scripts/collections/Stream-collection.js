@@ -3,15 +3,19 @@ FBHack.Collections.StreamCollection = Backbone.Collection.extend({
   initialize: function () {
 
   },
-  dimensions: [25, 30, 40, 50, 60, 70, 75, 100],
+  // dimensions: [25, 30, 40, 50, 60, 70, 75, 100],
+  dimensions: [30, 40, 50, 60, 70, 100],
+  getRandomDimension: function () {
+    return this.dimensions[Math.floor(Math.random()*this.dimensions.length)]
+  },
   computeLayout: function (width, height) {
-      var left, left1 = 0, left2 = 0, top;
-      var i, w, h;
-      var lastTopH = 0, lastBotH = 0;
-      var lastTopW = 0, lastBotW = 0;
-      var diff = 0;
+      var i, w, h, left, top,
+	left1 = 0, left2 = 0,
+	lastTopH = 0, lastBotH = 0,
+	lastTopW = 0, lastBotW = 0,
+	diff = 0;
       for (i = 0; i < this.length; i++) {
-	  w = this.dimensions[Math.floor(Math.random()*8)];
+	  w = this.getRandomDimension();
 	  if (left1 > left2) {
 	      left = left2;
 	      diff = Math.floor((left1 - left2)/width * 100);
@@ -42,7 +46,7 @@ FBHack.Collections.StreamCollection = Backbone.Collection.extend({
 	      left = left1;
 	      left1 += w/100 * width;
 	      top = 0;
-	      h = this.dimensions[Math.floor(Math.random()*8)];
+	      h = this.getRandomDimension();
 	      lastTopH = h;
 	      lastTopW = w;
 	  }
