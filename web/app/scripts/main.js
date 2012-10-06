@@ -48,4 +48,17 @@ window.FBHack = {
 $(document).ready(function(){
   $('#main').css('height', $(window).height() + 'px');
   FBHack.init();
+  $(window).keydown(function (e) {
+    var inc = 0;
+    if (e.keyCode === 37) { // left
+      inc = -800;
+    } else if (e.keyCode === 39) { // right
+      inc = 800;
+    }
+    $('#stream, #stream_container').css({
+      'margin-left': inc + 'px'
+    });
+    e.preventDefault();
+    e.stopPropagation();
+  });
 });
