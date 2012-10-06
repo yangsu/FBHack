@@ -13,6 +13,7 @@
     "mongoose": "~3.2.1",
     "underscore": "~1.4.1",
     "hiredis": "~0.1.14",
-    "shortid": "~1.0.9"
+    "shortid": "~1.0.9",
+    "qr": "~0.1.5"
   }
 }
