@@ -1,7 +1,11 @@
 FBHack.Collections.StreamCollection = Backbone.Collection.extend({
   model: FBHack.Models.ItemModel,
   initialize: function () {
-
+    this.on('add', this.onAdd, this);
+  },
+  onAdd: function () {
+    // this.computeLayout();
+    // this.trigger('change');
   },
   // dimensions: [25, 30, 40, 50, 60, 70, 75, 100],
   dimensions: [30, 40, 50, 60, 70, 100],
@@ -9,51 +13,55 @@ FBHack.Collections.StreamCollection = Backbone.Collection.extend({
       return this.dimensions[Math.floor(Math.random()*this.dimensions.length)]
   },
   maxPos: 0,
+  left1: 0,
+  left2: 0,
+  lastTopH: 0,
+  lastBotH: 0,
+  lastTopW: 0,
+  lastBotW: 0,
+  lastIndex: 0,
   computeLayout: function (width, height) {
     var i, img, w, h, left, top,
-      left1 = 0, left2 = 0,
-      lastTopH = 0, lastBotH = 0,
-      lastTopW = 0, lastBotW = 0,
       diff = 0, border, scalar;
 
-    for (i = 0; i < this.length; i++) {
+    for (i = this.lastIndex; i < this.length; i++) {
       img = this.at(i);
       w = this.getRandomDimension();
       border = '';
-      if (left1 > left2) {
+      if (this.left1 > this.left2) {
           border = 'border-t';
-          left = left2;
-          diff = left1 - left2;
+	  left = this.left2;
+	  diff = this.left1 - this.left2;
           if (Math.random() >= 0.5 && diff >= 25) {
             w = diff;
-            left2 = left1;
+	    this.left2 = this.left1;
           } else {
-            left2 += w;
+	    this.left2 += w;
           }
-          top = lastTopH;
-          h = 100 - lastTopH;
-          lastBotH = h;
-          lastBotW = w;
-      } else if (left2 > left1) {
-          left = left1;
-          diff = left2 - left1;
+	  top = this.lastTopH;
+	  h = 100 - this.lastTopH;
+	  this.lastBotH = h;
+	  this.lastBotW = w;
+      } else if (this.left2 > this.left1) {
+	  left = this.left1;
+	  diff = this.left2 - this.left1;
           if (Math.random() >= 0.5 && diff >= 25) {
             w = diff;
-            left1 = left2;
+	    this.left1 = this.left2;
           } else {
-            left1 += w;
+	    this.left1 += w;
           }
           top = 0;
-          h = 100 - lastBotH;
-          lastTopH = h;
-          lastTopW = w;
+	  h = 100 - this.lastBotH;
+	  this.lastTopH = h;
+	  this.lastTopW = w;
       } else {
-          left = left1;
-          left1 += w;
+	  left = this.left1;
+	  this.left1 += w;
           top = 0;
           h = this.getRandomDimension();
-          lastTopH = h;
-          lastTopW = w;
+	  this.lastTopH = h;
+	  this.lastTopW = w;
       }
       var vals = {
         w: w,
@@ -62,9 +70,10 @@ FBHack.Collections.StreamCollection = Backbone.Collection.extend({
         t: top,
         border: border
       };
-      img.set(vals);
+      img.set(vals, {silent: true});
+      this.lastIndex = this.length;
     }
-    this.maxPos = Math.max(left1, left2);
+    this.maxPos = Math.max(this.left1, this.left2);
     return this;
   }
 }, {
@@ -82,9 +91,13 @@ FBHack.Collections.StreamCollection = Backbone.Collection.extend({
       cb(_.extend(new FBHack.Collections.StreamCollection(transform(data)), {
         fetchNext: function () {
           var self = this;
-          $.get('http://imgur.com/gallery/hot/page/' + (++page) + '.json', function (data) {
-            self.add(transform(data));
-          });
+	  // $.get('http://imgur.com/gallery/hot/page/' + (++page) + '.json', function (data) {
+	    var newdata = transform(data);
+	    self.add(newdata, {silent: true});
+	    self.trigger('add');
+	    console.log(self.maxPos);
+	    console.log(self.length);
+	  // });
         }
       }));
     // });

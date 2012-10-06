@@ -5,10 +5,15 @@ FBHack.Routers.ApplicationRouter = Backbone.Router.extend({
     'room/:id': 'room'
   },
   initialize: function () {
-    var self = this;
+    var self = this,
+      width = 0;
     $('#main').scroll(_.throttle(function (e) {
       var pos = $(e.target).scrollLeft();
-      if (self.view.model.maxPos - pos <= 200) {
+      if (!width) {
+	width = self.view.$el.width();
+      }
+      console.log((self.view.model.maxPos - pos/width * 100));
+      if ((self.view.model.maxPos - pos/width * 100) <= 250) {
         self.view.fetchNext();
       }
     }, 50));
