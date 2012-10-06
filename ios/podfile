@@ -6,4 +6,5 @@ pod 'UIDeviceAddition'
 pod 'SBJson'
 pod 'Facebook-iOS-SDK'
 pod 'AFNetworking'
-
+pod 'GData/YouTube'
+pod 'PrettyKit'

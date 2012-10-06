@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class BButton;
+
 @interface ConnectViewController : UIViewController
 
 - (IBAction)connectPressed:(UIButton *)sender;
 
 - (IBAction)nextPressed:(UIButton *)sender;
+
+@property (nonatomic, weak) IBOutlet BButton *connectButton;
 
 
 @end

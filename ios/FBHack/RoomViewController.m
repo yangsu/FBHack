@@ -11,6 +11,8 @@
 #import "SocketCenter.h"
 #import "ImgurUploader.h"
 #import "ContentPusher.h"
+#import <QuartzCore/QuartzCore.h>
+#import "BButton+FontAwesome.h"
 
 #define kEventNewContent @"NEW_CONTENT"
 #define kEventSetLike @"SET_LIKES"
@@ -19,16 +21,21 @@
 @interface RoomViewController ()<SocketCenterDelegate, ImgurUploaderDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, strong) SocketCenter *socketCenter;
 @property (nonatomic, strong) ImgurUploader *imgurUploader;
-@property (nonatomic, strong) UIButton *selectedImageButton;
+@property (nonatomic, strong) UIImageView *selectedImageView;
+@property (nonatomic, copy) NSString *selectedImageURL;
 @property (nonatomic, strong) ContentPusher *contentPusher;
 @end
 
 @implementation RoomViewController
 
+@synthesize photoButton = _photoButton;
+@synthesize youtubeButton = _youtubeButton;
+@synthesize cameraButton = _cameraButton;
 @synthesize roomID = _roomID;
 @synthesize socketCenter = _socketCenter;
 @synthesize imgurUploader = _imgurUploader;
-@synthesize selectedImageButton = selectedImageButton;
+@synthesize selectedImageView = selectedImageView;
+@synthesize selectedImageURL = _selectedImageURL;
 @synthesize contentPusher = _contentPusher;
 
 
@@ -53,8 +60,8 @@
 
 -(void)imageUploadedWithURLString:(NSString*)urlString
 {
-   [self.contentPusher pushContent:urlString];
     NSLog(urlString);
+    self.selectedImageURL = urlString;
 }
 
 -(void)uploadProgressedToPercentage:(CGFloat)percentage
@@ -76,37 +83,14 @@
     UIImage *selectedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
    	[self.imgurUploader uploadImage:selectedImage];
     
-    [self.selectedImageButton setImage:selectedImage forState:UIControlStateNormal];
-    self.selectedImageButton.center = self.view.center;
+    [self.selectedImageView setImage:selectedImage];
+    
+    self.selectedImageView.center = CGPointMake(self.view.center.x, self.view.center.y - 30);
+    
+    self.selectedImageView.alpha = 1;
+
 
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - Image animation handling
-
-- (IBAction)imageMoved:(id)sender withEvent:(UIEvent *)event
-{
-    CGPoint point = [[[event allTouches] anyObject] locationInView:self.view];
-    UIControl *control = sender;
-    
-    CGPoint delta = CGPointMake(point.x - control.center.x, point.y - control.center.y);
-
-    control.center = point;
-
-
-}
-
-- (IBAction)imageReleased:(id)sender withEvent:(UIEvent *)event
-{
-    [UIView animateWithDuration:0.7
-                          delay:0
-                        options: UIViewAnimationCurveEaseOut
-                     animations:^{
-                         self.selectedImageButton.center = self.view.center;
-                     }
-                     completion:^(BOOL finished){
-                         NSLog(@"Done!");
-                     }];
 }
 
 
@@ -114,7 +98,7 @@
 
 - (IBAction)photoPressed:(UIButton *)sender
 {
-    UIImagePickerControllerSourceType sourceType = [sender.currentTitle isEqualToString:@"Photo"] ? UIImagePickerControllerSourceTypePhotoLibrary : UIImagePickerControllerSourceTypeCamera;
+    UIImagePickerControllerSourceType sourceType = sender.tag == 1 ? UIImagePickerControllerSourceTypePhotoLibrary : UIImagePickerControllerSourceTypeCamera;
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 	imagePicker.sourceType = sourceType;
     imagePicker.delegate = self;
@@ -126,18 +110,69 @@
     
 }
 
+- (void)handlePanFrom:(UIPanGestureRecognizer*)recognizer
+{
+    CGPoint translation = [recognizer translationInView:recognizer.view];
+    CGPoint velocity = [recognizer velocityInView:recognizer.view];
+    
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        if (self.selectedImageURL) {
+            [self.contentPusher pushPhoto:self.selectedImageURL withWidth:self.selectedImageView.image.size.width withHeight:self.selectedImageView.image.size.height];
+            [UIView animateWithDuration:0.7
+                                  delay:0
+                                options: UIViewAnimationCurveLinear
+                             animations:^{
+                                 self.selectedImageView.center = CGPointMake(self.view.center.x, -200);
+                                 
+                             }
+                             completion:^(BOOL finished){
+                                 NSLog(@"Done!");
+                             }];
+        }
+    } else if (recognizer.state == UIGestureRecognizerStateEnded) {
+    }
+}
+
 #pragma mark - UIViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.selectedImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    //[button addTarget:self action:@selector(imageTouch:withEvent:) forControlEvents:UIControlEventTouchDown];
-    [self.selectedImageButton addTarget:self action:@selector(imageMoved:withEvent:) forControlEvents:UIControlEventTouchDragInside];
-    [self.selectedImageButton addTarget:self action:@selector(imageReleased:withEvent:) forControlEvents:UIControlEventTouchUpInside];
-    self.selectedImageButton.frame = CGRectMake(0, 0, 160, 160);
-    [self.view addSubview:self.selectedImageButton];
+    self.title = @"Push";
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"noisy_grid"]];
+    
+    self.selectedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 180, 180)];
+    self.selectedImageView.layer.cornerRadius = 5.0;
+    self.selectedImageView.layer.masksToBounds = YES;
+    self.selectedImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.selectedImageView.layer.borderWidth = 1.0;
+    self.selectedImageView.alpha = 0;
+    self.selectedImageView.contentMode  = UIViewContentModeScaleAspectFill;
+    self.selectedImageView.clipsToBounds = YES;
+    [self.view addSubview:self.selectedImageView];
+    
+    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle: @"NewTitle" style: UIBarButtonItemStyleBordered target: nil action: nil];
+    
+    [[self navigationItem] setBackBarButtonItem: newBackButton];
+    
+    
+    UIPanGestureRecognizer* panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanFrom:)];
+    [self.view addGestureRecognizer:panGestureRecognizer];
+    
+    self.cameraButton.color = [UIColor purpleColor];
+    [self.cameraButton makeAwesomeWithIcon:FAIconCamera];
+    self.photoButton.color = [UIColor purpleColor];
+    [self.photoButton makeAwesomeWithIcon:FAIconPicture];
+    self.youtubeButton.color = [UIColor purpleColor];
+    [self.youtubeButton makeAwesomeWithIcon:FAIconFacetimeVideo];
+
+
+
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

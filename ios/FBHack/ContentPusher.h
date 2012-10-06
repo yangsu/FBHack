@@ -12,6 +12,7 @@
 
 + (ContentPusher *)pusherWithRoomID:(NSString *)roomID;
 
-- (void)pushContent:(NSString *)contentURLString;
+- (void)pushPhoto:(NSString *)contentURLString withWidth:(CGFloat)width withHeight:(CGFloat)height;
+
 
 @end

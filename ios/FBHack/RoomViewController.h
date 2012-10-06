@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class BButton;
+
 @interface RoomViewController : UIViewController
 
 - (IBAction)photoPressed:(id)sender;
 - (IBAction)youtubePressed:(id)sender;
 - (IBAction)cameraPressed:(id)sender;
+
+@property (nonatomic, weak) IBOutlet BButton *photoButton;
+@property (nonatomic, weak) IBOutlet BButton *youtubeButton;
+@property (nonatomic, weak) IBOutlet BButton *cameraButton;
 
 
 @property (nonatomic, copy) NSString *roomID;

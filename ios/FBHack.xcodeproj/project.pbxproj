@@ -28,6 +28,17 @@
 		E5D59986161FEBE70089D7C3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D59984161FEBE70089D7C3 /* LoginViewController.m */; };
 		E5D59987161FEBE70089D7C3 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5D59985161FEBE70089D7C3 /* LoginViewController.xib */; };
 		E5D59994161FF5240089D7C3 /* ContentPusher.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D59993161FF5240089D7C3 /* ContentPusher.m */; };
+		E5D599B2162009880089D7C3 /* assault.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D599B0162009880089D7C3 /* assault.png */; };
+		E5D599B3162009880089D7C3 /* assault_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D599B1162009880089D7C3 /* assault_@2X.png */; };
+		E5D599B616200B9F0089D7C3 /* office_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D599B416200B9F0089D7C3 /* office_@2X.png */; };
+		E5D599B716200B9F0089D7C3 /* office.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D599B516200B9F0089D7C3 /* office.png */; };
+		E5D599C8162029F50089D7C3 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D599C7162029F50089D7C3 /* FontAwesome.ttf */; };
+		E5D599D016202AA80089D7C3 /* BButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D599CD16202AA80089D7C3 /* BButton.m */; };
+		E5D599D116202AA80089D7C3 /* BButton+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D599CF16202AA80089D7C3 /* BButton+FontAwesome.m */; };
+		E5D599D41620343C0089D7C3 /* noisy_grid_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D599D21620343C0089D7C3 /* noisy_grid_@2X.png */; };
+		E5D599D51620343C0089D7C3 /* noisy_grid.png in Resources */ = {isa = PBXBuildFile; fileRef = E5D599D31620343C0089D7C3 /* noisy_grid.png */; };
+		E5D599ED16203B380089D7C3 /* UIColor+CreateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D599EC16203B380089D7C3 /* UIColor+CreateMethods.m */; };
+		E5D599F016203D3D0089D7C3 /* NavBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5D599EF16203D3D0089D7C3 /* NavBar.xib */; };
 		F261C23496614EB98F9BC3A8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AC35024E7247AF84CB5FB1 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +79,20 @@
 		E5D59985161FEBE70089D7C3 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		E5D59992161FF5240089D7C3 /* ContentPusher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentPusher.h; sourceTree = "<group>"; };
 		E5D59993161FF5240089D7C3 /* ContentPusher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentPusher.m; sourceTree = "<group>"; };
+		E5D599B0162009880089D7C3 /* assault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assault.png; sourceTree = "<group>"; };
+		E5D599B1162009880089D7C3 /* assault_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assault_@2X.png"; sourceTree = "<group>"; };
+		E5D599B416200B9F0089D7C3 /* office_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "office_@2X.png"; sourceTree = "<group>"; };
+		E5D599B516200B9F0089D7C3 /* office.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = office.png; sourceTree = "<group>"; };
+		E5D599C7162029F50089D7C3 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		E5D599CC16202AA80089D7C3 /* BButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BButton.h; sourceTree = "<group>"; };
+		E5D599CD16202AA80089D7C3 /* BButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BButton.m; sourceTree = "<group>"; };
+		E5D599CE16202AA80089D7C3 /* BButton+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BButton+FontAwesome.h"; sourceTree = "<group>"; };
+		E5D599CF16202AA80089D7C3 /* BButton+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BButton+FontAwesome.m"; sourceTree = "<group>"; };
+		E5D599D21620343C0089D7C3 /* noisy_grid_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noisy_grid_@2X.png"; sourceTree = "<group>"; };
+		E5D599D31620343C0089D7C3 /* noisy_grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noisy_grid.png; sourceTree = "<group>"; };
+		E5D599EB16203B380089D7C3 /* UIColor+CreateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CreateMethods.h"; sourceTree = "<group>"; };
+		E5D599EC16203B380089D7C3 /* UIColor+CreateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CreateMethods.m"; sourceTree = "<group>"; };
+		E5D599EF16203D3D0089D7C3 /* NavBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavBar.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +113,9 @@
 		E5508119161F8B6100026D32 = {
 			isa = PBXGroup;
 			children = (
+				E5D599CA16202A890089D7C3 /* Vendor */,
 				E550812E161F8B6100026D32 /* FBHack */,
+				E5D599AF162009880089D7C3 /* Resources */,
 				E5508127161F8B6100026D32 /* Frameworks */,
 				E5508125161F8B6100026D32 /* Products */,
 				CD315B11856E4F6A8086CE2C /* Pods.xcconfig */,
@@ -160,6 +187,7 @@
 		E550815C161F92C800026D32 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E5D599EF16203D3D0089D7C3 /* NavBar.xib */,
 				E5D5994A161FB1030089D7C3 /* ConnectViewController.h */,
 				E5D5994B161FB1030089D7C3 /* ConnectViewController.m */,
 				E5D5994C161FB1030089D7C3 /* ConnectViewController.xib */,
@@ -189,6 +217,8 @@
 		E5D59958161FCADF0089D7C3 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				E5D599EB16203B380089D7C3 /* UIColor+CreateMethods.h */,
+				E5D599EC16203B380089D7C3 /* UIColor+CreateMethods.m */,
 				E5D59959161FCB3F0089D7C3 /* NSData+Base64.h */,
 				E5D5995A161FCB3F0089D7C3 /* NSData+Base64.m */,
 				E5D5995B161FCB3F0089D7C3 /* NSString+URLEncoding.h */,
@@ -197,6 +227,40 @@
 				E5D5995E161FCB3F0089D7C3 /* NSString+URLEscape.m */,
 			);
 			name = Util;
+			sourceTree = "<group>";
+		};
+		E5D599AF162009880089D7C3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E5D599D21620343C0089D7C3 /* noisy_grid_@2X.png */,
+				E5D599D31620343C0089D7C3 /* noisy_grid.png */,
+				E5D599C7162029F50089D7C3 /* FontAwesome.ttf */,
+				E5D599B416200B9F0089D7C3 /* office_@2X.png */,
+				E5D599B516200B9F0089D7C3 /* office.png */,
+				E5D599B0162009880089D7C3 /* assault.png */,
+				E5D599B1162009880089D7C3 /* assault_@2X.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E5D599CA16202A890089D7C3 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				E5D599CB16202A9A0089D7C3 /* BButton */,
+			);
+			name = Vendor;
+			path = FBHack;
+			sourceTree = "<group>";
+		};
+		E5D599CB16202A9A0089D7C3 /* BButton */ = {
+			isa = PBXGroup;
+			children = (
+				E5D599CC16202AA80089D7C3 /* BButton.h */,
+				E5D599CD16202AA80089D7C3 /* BButton.m */,
+				E5D599CE16202AA80089D7C3 /* BButton+FontAwesome.h */,
+				E5D599CF16202AA80089D7C3 /* BButton+FontAwesome.m */,
+			);
+			name = BButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +322,14 @@
 				E5D5994E161FB1030089D7C3 /* ConnectViewController.xib in Resources */,
 				E5D59953161FBD670089D7C3 /* RoomViewController.xib in Resources */,
 				E5D59987161FEBE70089D7C3 /* LoginViewController.xib in Resources */,
+				E5D599B2162009880089D7C3 /* assault.png in Resources */,
+				E5D599B3162009880089D7C3 /* assault_@2X.png in Resources */,
+				E5D599B616200B9F0089D7C3 /* office_@2X.png in Resources */,
+				E5D599B716200B9F0089D7C3 /* office.png in Resources */,
+				E5D599C8162029F50089D7C3 /* FontAwesome.ttf in Resources */,
+				E5D599D41620343C0089D7C3 /* noisy_grid_@2X.png in Resources */,
+				E5D599D51620343C0089D7C3 /* noisy_grid.png in Resources */,
+				E5D599F016203D3D0089D7C3 /* NavBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +368,9 @@
 				E5D59964161FCC010089D7C3 /* ImgurUploader.m in Sources */,
 				E5D59986161FEBE70089D7C3 /* LoginViewController.m in Sources */,
 				E5D59994161FF5240089D7C3 /* ContentPusher.m in Sources */,
+				E5D599D016202AA80089D7C3 /* BButton.m in Sources */,
+				E5D599D116202AA80089D7C3 /* BButton+FontAwesome.m in Sources */,
+				E5D599ED16203B380089D7C3 /* UIColor+CreateMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,9 @@
 
 #import "ZBarReaderViewController.h"
 #import "RoomViewController.h"
+#import "BButton+FontAwesome.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 
 @interface ConnectViewController ()<ZBarReaderDelegate>
@@ -17,6 +20,8 @@
 @end
 
 @implementation ConnectViewController
+
+@synthesize connectButton = _connectButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +38,18 @@
 {
     [super viewDidLoad];
     self.title = @"Connect";
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"noisy_grid"]];
+    
+    self.connectButton.color = [UIColor purpleColor];
+    [self.connectButton makeAwesomeWithIcon:FAIconSignin];
+    self.connectButton.clipsToBounds = YES;
+    self.connectButton.layer.cornerRadius = 80;//half of the width
+    
+    [self.connectButton.layer setShadowOffset:CGSizeMake(0.0, 5.0)];
+    [self.connectButton.layer setShadowOpacity:0.8];
+    [self.connectButton.layer setShadowRadius:2.0];
+    [self.connectButton.layer setShadowColor:[UIColor blackColor].CGColor];
+
     
 }
 
@@ -41,7 +58,7 @@
 - (IBAction)nextPressed:(UIButton *)sender
 {
     RoomViewController *roomViewController = [[RoomViewController alloc] initWithNibName:@"RoomViewController" bundle:nil];
-    roomViewController.roomID = @"1";
+    roomViewController.roomID = @"a_ee9pUu0Jr";
     [self.navigationController pushViewController:roomViewController animated:YES];
 }
 

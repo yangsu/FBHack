@@ -9,8 +9,9 @@
 #import "ContentPusher.h"
 
 #define kBaseURL @"http://23.23.206.35/"
-#define kPushPath @"album"
-#define kPushType @"PUSH_CONTENT"
+#define kPushPath @"api/album"
+#define kEventPhoto @"PUSH_PHOTO"
+
 
 @interface ContentPusher ()
 @property (nonatomic, copy) NSString *roomID;
@@ -25,13 +26,19 @@
     return pusher;
 }
 
-- (void)pushContent:(NSString *)contentURLString
-{
-    NSDictionary *payload = @{@"link" : contentURLString};
-    NSDictionary *params = @{@"type" : kPushType, @"payload" : payload};
 
-    [self postPath:kPushPath parameters:params
-        success:nil
+- (void)pushPhoto:(NSString *)contentURLString withWidth:(CGFloat)width withHeight:(CGFloat)height
+{
+    NSDictionary *payload = @{  @"link" : contentURLString,
+                                @"width" : [NSString stringWithFormat: @"%.2f", width],
+                                @"height" : [NSString stringWithFormat: @"%.2f", height]};
+    NSLog(@"%@", payload);
+    NSDictionary *params = @{@"type" : kEventPhoto, @"payload" : payload};
+
+    [self postPath:[NSString stringWithFormat:@"%@/%@", kPushPath, self.roomID] parameters:params
+        success:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"ContentPushed");
+        }
      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);
     } ];

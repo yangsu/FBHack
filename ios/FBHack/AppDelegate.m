@@ -11,6 +11,8 @@
 #import "ConnectViewController.h"
 #import "FacebookSDK.h"
 #import "LoginViewController.h"
+#import "PrettyNavigationBar.h"
+#import "UIColor+CreateMethods.h"
 
 @implementation AppDelegate
 
@@ -21,7 +23,9 @@
     
     // Set up connector controller
     self.mainViewController = [[ConnectViewController alloc] initWithNibName:@"ConnectViewController" bundle:nil];
-    self.navController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
+    UINib *nib = [UINib nibWithNibName:@"NavBar" bundle:nil];
+	self.navController = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
+    [self.navController pushViewController:self.mainViewController animated:NO];
     
     // Apply style
     [self applyStyle];
@@ -62,7 +66,14 @@
 
 - (void)applyStyle
 {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
+    PrettyNavigationBar *navBar = (PrettyNavigationBar *)self.navController.navigationBar;
     
+	navBar.topLineColor = [UIColor colorWithHex:@"0x941B9C" alpha:1];
+    navBar.gradientStartColor = [UIColor colorWithHex:@"0x941B9C" alpha:1];
+	navBar.gradientEndColor = [UIColor colorWithHex:@"0x941B9C" alpha:1];
+	navBar.bottomLineColor = [UIColor colorWithHex:@"0x941B9C" alpha:1];
+	navBar.tintColor = navBar.gradientEndColor;
 }
 
 #pragma mark - Facebook SDK
