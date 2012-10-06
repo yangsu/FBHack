@@ -7,7 +7,7 @@ exports.qr_encode = function (req, res) {
   var aid = req.params.str;
   if (aid &&
       _.isString(aid) &&
-      aid.match(/[A-Za-z_-]{7,12}/)) {
+      aid.match(/[0-9A-Za-z_-]{7,12}/)) {
     Model.Album.get(aid, function (err, album) {
       if (err) { res.send(sc.INTERNAL_SERVER_ERROR, err); return; }
       if (!album) { res.send(sc.NOT_FOUND); return; }
