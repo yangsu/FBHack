@@ -18,6 +18,7 @@
 @interface RoomViewController ()<SocketCenterDelegate, ImgurUploaderDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, strong) SocketCenter *socketCenter;
 @property (nonatomic, strong) ImgurUploader *imgurUploader;
+@property (nonatomic, strong) UIButton *selectedImageButton;
 @end
 
 @implementation RoomViewController
@@ -25,6 +26,7 @@
 @synthesize roomID = _roomID;
 @synthesize socketCenter = _socketCenter;
 @synthesize imgurUploader = _imgurUploader;
+@synthesize selectedImageButton = selectedImageButton;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -48,7 +50,7 @@
 
 -(void)imageUploadedWithURLString:(NSString*)urlString
 {
-    
+    // TODO: Update with image
 }
 
 -(void)uploadProgressedToPercentage:(CGFloat)percentage
@@ -66,14 +68,46 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     
+    UIImage *selectedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+   	[self.imgurUploader uploadImage:selectedImage];
+    
+    [self.selectedImageButton setImage:selectedImage forState:UIControlStateNormal];
+    self.selectedImageButton.center = self.view.center;
+
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - Image animation handling
+
+- (IBAction)imageMoved:(id)sender withEvent:(UIEvent *)event
+{
+    CGPoint point = [[[event allTouches] anyObject] locationInView:self.view];
+    UIControl *control = sender;
+    control.center = point;
+}
+
+- (IBAction)imageReleased:(id)sender withEvent:(UIEvent *)event
+{
+    [UIView animateWithDuration:0.7
+                          delay:0
+                        options: UIViewAnimationCurveEaseOut
+                     animations:^{
+                         self.selectedImageButton.center = self.view.center;
+                     }
+                     completion:^(BOOL finished){
+                         NSLog(@"Done!");
+                     }];
+}
+
 
 #pragma mark - Instance methods
 
-- (IBAction)photoPressed:(id)sender
+- (IBAction)photoPressed:(UIButton *)sender
 {
+    UIImagePickerControllerSourceType sourceType = [sender.currentTitle isEqualToString:@"Photo"] ? UIImagePickerControllerSourceTypePhotoLibrary : UIImagePickerControllerSourceTypeCamera;
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-	imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+	imagePicker.sourceType = sourceType;
+    imagePicker.delegate = self;
 	[self presentViewController:imagePicker animated:YES completion:nil];
 }
 
@@ -82,21 +116,18 @@
     
 }
 
-- (IBAction)cameraPressed:(id)sender
-{
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-	[self presentViewController:imagePicker animated:YES completion:nil];
-}
-
-
-
 #pragma mark - UIViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.selectedImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //[button addTarget:self action:@selector(imageTouch:withEvent:) forControlEvents:UIControlEventTouchDown];
+    [self.selectedImageButton addTarget:self action:@selector(imageMoved:withEvent:) forControlEvents:UIControlEventTouchDragInside];
+    [self.selectedImageButton addTarget:self action:@selector(imageReleased:withEvent:) forControlEvents:UIControlEventTouchUpInside];
+    self.selectedImageButton.frame = CGRectMake(0, 0, 160, 160);
+    [self.view addSubview:self.selectedImageButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,5 +143,6 @@
     _roomID = [roomID copy];
     self.socketCenter = [SocketCenter centerWithRoomID:roomID andDelegate:self];
 }
+
 
 @end
