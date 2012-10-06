@@ -66,7 +66,8 @@
 
 -(void)uploadProgressedToPercentage:(CGFloat)percentage
 {
-    
+    progressView.hidden = !( percentage > 0.0 && percentage < 1.0 );
+	progressView.progress = percentage;
 }
 
 -(void)uploadFailedWithError:(NSError*)error
@@ -88,6 +89,8 @@
     self.selectedImageView.center = CGPointMake(self.view.center.x, self.view.center.y - 30);
     
     self.selectedImageView.alpha = 1;
+    
+    self.helperView.alpha = 0;
 
 
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -127,6 +130,18 @@
                              }
                              completion:^(BOOL finished){
                                  NSLog(@"Done!");
+                                 self.selectedImageURL = nil;
+                                 
+                                 [UIView animateWithDuration:1
+                                                       delay:0
+                                                     options: UIViewAnimationCurveLinear
+                                                  animations:^{
+                                                      self.helperView.alpha = 1;                                                        
+                                                  }
+                                                  completion:^(BOOL finished){
+                                                      NSLog(@"Done!");
+                                                      self.selectedImageURL = nil;
+                                                  }];
                              }];
         }
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {

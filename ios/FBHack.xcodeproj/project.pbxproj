@@ -17,6 +17,10 @@
 		E550813D161F8B6100026D32 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E550813C161F8B6100026D32 /* Default@2x.png */; };
 		E550813F161F8B6100026D32 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E550813E161F8B6100026D32 /* Default-568h@2x.png */; };
 		E5508163161F93C200026D32 /* SocketCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = E5508162161F93C200026D32 /* SocketCenter.m */; };
+		E5C62BE416204D050004C68A /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C62BE216204D050004C68A /* arrow.png */; };
+		E5C62BE516204D050004C68A /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C62BE316204D050004C68A /* arrow@2x.png */; };
+		E5C62BE916204F640004C68A /* arrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C62BE716204F640004C68A /* arrow2.png */; };
+		E5C62BEA16204F640004C68A /* arrow2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C62BE816204F640004C68A /* arrow2@2x.png */; };
 		E5D5994D161FB1030089D7C3 /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D5994B161FB1030089D7C3 /* ConnectViewController.m */; };
 		E5D5994E161FB1030089D7C3 /* ConnectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5D5994C161FB1030089D7C3 /* ConnectViewController.xib */; };
 		E5D59952161FBD670089D7C3 /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D59950161FBD670089D7C3 /* RoomViewController.m */; };
@@ -60,6 +64,10 @@
 		E550813E161F8B6100026D32 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E5508161161F93C200026D32 /* SocketCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketCenter.h; sourceTree = "<group>"; };
 		E5508162161F93C200026D32 /* SocketCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketCenter.m; sourceTree = "<group>"; };
+		E5C62BE216204D050004C68A /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		E5C62BE316204D050004C68A /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
+		E5C62BE716204F640004C68A /* arrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow2.png; sourceTree = "<group>"; };
+		E5C62BE816204F640004C68A /* arrow2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow2@2x.png"; sourceTree = "<group>"; };
 		E5D5994A161FB1030089D7C3 /* ConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectViewController.h; sourceTree = "<group>"; };
 		E5D5994B161FB1030089D7C3 /* ConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
 		E5D5994C161FB1030089D7C3 /* ConnectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectViewController.xib; sourceTree = "<group>"; };
@@ -232,6 +240,10 @@
 		E5D599AF162009880089D7C3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E5C62BE716204F640004C68A /* arrow2.png */,
+				E5C62BE816204F640004C68A /* arrow2@2x.png */,
+				E5C62BE216204D050004C68A /* arrow.png */,
+				E5C62BE316204D050004C68A /* arrow@2x.png */,
 				E5D599D21620343C0089D7C3 /* noisy_grid_@2X.png */,
 				E5D599D31620343C0089D7C3 /* noisy_grid.png */,
 				E5D599C7162029F50089D7C3 /* FontAwesome.ttf */,
@@ -330,6 +342,10 @@
 				E5D599D41620343C0089D7C3 /* noisy_grid_@2X.png in Resources */,
 				E5D599D51620343C0089D7C3 /* noisy_grid.png in Resources */,
 				E5D599F016203D3D0089D7C3 /* NavBar.xib in Resources */,
+				E5C62BE416204D050004C68A /* arrow.png in Resources */,
+				E5C62BE516204D050004C68A /* arrow@2x.png in Resources */,
+				E5C62BE916204F640004C68A /* arrow2.png in Resources */,
+				E5C62BEA16204F640004C68A /* arrow2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

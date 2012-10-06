@@ -20,6 +20,9 @@
 @property (nonatomic, weak) IBOutlet BButton *youtubeButton;
 @property (nonatomic, weak) IBOutlet BButton *cameraButton;
 
+@property (nonatomic, weak) IBOutlet UIView *helperView;
+
+
 
 @property (nonatomic, copy) NSString *roomID;
 
