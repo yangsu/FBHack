@@ -46,5 +46,6 @@ window.FBHack = {
 };
 
 $(document).ready(function(){
+  $('#main').css('height', $(window).height() + 'px');
   FBHack.init();
 });

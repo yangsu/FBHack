@@ -7,7 +7,7 @@ FBHack.Views.StreamView = Backbone.View.extend({
   },
   render: function () {
     this.$el.html(this.template({
-      images: this.model.toJSON()
+      images: this.model.computeLayout(this.$el.width(), this.$el.height()).toJSON()
     }));
   }
 
