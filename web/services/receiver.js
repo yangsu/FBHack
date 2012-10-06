@@ -1,3 +1,14 @@
+function pushContent(aid, content, res) {
+  var cid = Model.Content.create(content);
+  Model.Album.enqueue(aid, cid, function (err) {
+    if (err) {
+      res.send(sc.BAD_REQUEST);
+      return;
+    }
+    res.send(sc.CREATED);
+  });
+}
+
 module.exports = {
   validateEvent: function (event) {
     var typesAreValid = _.isObject(event) &&
@@ -14,19 +25,22 @@ module.exports = {
 
   handleEvent: function (event, res) {
     switch (event.type) {
+
     case "PUSH_PHOTO":
       var aid = event.aid
         , payload = event.payload;
       if (payload.link && _.isString(payload.link)) {
-        Model.Album.pushContent(aid, payload, res);
+        pushContent(aid, payload, res);
       } else {
         res.send(sc.BAD_REQUEST, 'Must include link to content.');
         return;
       }
       break;
+
     default:
       res.send(sc.INTERNAL_SERVER_ERROR, 'Could not determine event type.');
       break;
+
     }
   }
 }
