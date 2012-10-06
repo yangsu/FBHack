@@ -26,3 +26,7 @@ npm-debug.log
 
 # LESS
 style.css
+
+# Yeoman
+temp
+dist
