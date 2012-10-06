@@ -73,8 +73,8 @@ app.get('/album/:id', routes.view_album);
 app.get('/qr/:str', routes.qr_encode);
 
 // API
-app.post('/album/create', routes.create_album);
-app.post('/album/:id', routes.receive_content);
+app.post('/api/album/create', routes.create_album);
+app.post('/api/album/:id', routes.receive_content);
 
 /**
  * Start Server
