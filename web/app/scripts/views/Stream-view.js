@@ -12,7 +12,7 @@ FBHack.Views.StreamView = Backbone.View.extend({
   },
   modalVisible: false,
   showQR: function (e) {
-    if (this.modalVisible) {
+    if (!this.modalVisible) {
       $('#qr')
         .find('.content')
         .html(this.qrTemplate({ id : this.id }))
