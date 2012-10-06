@@ -7,7 +7,7 @@ FBHack.Views.StreamView = Backbone.View.extend({
     this.model.on('add', this.render, this);
   },
   events: {
-    'click #qrlink': 'showQR'
+    'click #qrlink': 'showQR',
     'click #qrlink .x': 'closeQR'
   },
   showQR: function (e) {
