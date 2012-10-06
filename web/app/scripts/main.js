@@ -74,7 +74,5 @@ $(document).ready(function(){
     $('#stream, #stream_container').css({
       'margin-left': inc + 'px'
     });
-    e.preventDefault();
-    e.stopPropagation();
   });
 });
