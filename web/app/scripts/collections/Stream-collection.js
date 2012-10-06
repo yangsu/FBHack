@@ -8,7 +8,7 @@ FBHack.Collections.StreamCollection = Backbone.Collection.extend({
     // this.trigger('change');
   },
   // dimensions: [25, 30, 40, 50, 60, 70, 75, 100],
-  dimensions: [30, 40, 50, 60, 70, 100],
+  dimensions: [30, 40, 50, 60, 70],
   getRandomDimension: function () {
       return this.dimensions[Math.floor(Math.random()*this.dimensions.length)]
   },
