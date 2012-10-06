@@ -5,7 +5,6 @@ function pushContent(aid, content, res) {
       res.send(sc.BAD_REQUEST);
       return;
     }
-    console.log(aid);
     events.emit('test', {
         album: aid,
         cid: cid,
