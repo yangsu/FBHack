@@ -5,6 +5,12 @@ function pushContent(aid, content, res) {
       res.send(sc.BAD_REQUEST);
       return;
     }
+    io.sockets.in(aid).emit({
+      album: aid,
+      cid: cid,
+      payload: content
+    });
+    // send http response
     res.send(sc.CREATED);
   });
 }

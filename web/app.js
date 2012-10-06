@@ -15,6 +15,8 @@ _ = require('underscore');
 app = express();
 contentReceiver = require('./services/receiver');
 sc = require('./lib/statuscode');
+io = require('socket.io').listen(app);
+
 // Set up redis
 redis = require('redis').createClient(
   process.env.FBHACK_REDIS_PORT || 6379,
@@ -78,6 +80,14 @@ app.get('/album/create', routes.create_album_view);
 app.get('/album/:id', routes.view_album);
 app.get('/qr/:str', routes.qr_encode);
 app.get('/:id', routes.view_album); // catch all
+
+/**
+ * Set up socket.io
+ */
+albumSockets = [];
+io.sockets.on('connection', function (socket) {
+  console.log(socket);
+});
 
 /**
  * Start Server
