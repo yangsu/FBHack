@@ -10,9 +10,9 @@ exports.view_album = function (req, res) {
     console.log(replyObj);
     if (replyObj && replyObj.queue && _.isArray(replyObj.queue)) {
       redis.mget(replyObj.queue, function (err, images) {
-        var links = _(images).map(function (img) {
+        var links = (images) ? _(images).map(function (img) {
           return JSON.parse(img).link;
-        });
+        }) : [];
         res.render('album', { title: 'Room', photos: links });
       });
     } else {

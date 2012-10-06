@@ -67,16 +67,17 @@ var routes = loadDirectory('routes');
 // homepage
 app.get('/', routes.index);
 
-// Web app routes
-app.get('/album/create', routes.create_album_view);
-app.get('/album/:id', routes.view_album);
-app.get('/qr/:str', routes.qr_encode);
-
 // API
 app.post('/api/album/create', routes.create_album);
 app.post('/api/album/:id', routes.receive_content);
 app.get('/api/album/:id', routes.get_album_content);
 app.get('/api/album/:id/:cursor', routes.get_album_content);
+
+// Web app routes
+app.get('/album/create', routes.create_album_view);
+app.get('/album/:id', routes.view_album);
+app.get('/qr/:str', routes.qr_encode);
+app.get('/:id', routes.view_album); // catch all
 
 /**
  * Start Server
