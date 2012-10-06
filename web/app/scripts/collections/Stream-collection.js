@@ -9,18 +9,31 @@ FBHack.Collections.StreamCollection = Backbone.Collection.extend({
       var i, w, h;
       var lastTopH = 0, lastBotH = 0;
       var lastTopW = 0, lastBotW = 0;
+      var diff = 0;
       for (i = 0; i < this.length; i++) {
 	  w = this.dimensions[Math.floor(Math.random()*8)];
 	  if (left1 > left2) {
 	      left = left2;
-	      left2 += w/100 * width;
+	      diff = Math.floor((left1 - left2)/width * 100);
+	      if (Math.random() >= 0.5 && diff >= 25 && _.contains(this.dimensions, diff)) {
+		w = diff;
+		left2 = left1;
+	      } else {
+		left2 += w/100 * width;
+	      }
 	      top = lastTopH/100 * height;
 	      h = 100 - lastTopH;
 	      lastBotH = h;
 	      lastBotW = w;
 	  } else if (left2 > left1) {
 	      left = left1;
-	      left1 += w/100 * width;
+	      diff = Math.floor((left2 - left1)/width * 100);
+	      if (Math.random() >= 0.5 && diff >= 25 && _.contains(this.dimensions, diff)) {
+		w = diff;
+		left1 = left2;
+	      } else {
+		left1 += w/100 * width;
+	      }
 	      top = 0;
 	      h = 100 - lastBotH;
 	      lastTopH = h;
