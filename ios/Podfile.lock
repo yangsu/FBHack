@@ -1,14 +1,20 @@
 
 SPEC CHECKSUMS: 
-  SocketRocket: a0529878e3c4c200196fa3a7e2ac1ef34aa33ffe
   ZBarSDK: df14c7cb5af97d840eb722ff27202b7b6149d377
+  SocketRocket: a0529878e3c4c200196fa3a7e2ac1ef34aa33ffe
+  JSONKit: a01a22c75f27eae76b4badd55a91c20fe6e86477
+  UIDeviceAddition: aace2f602768bb2bece8b9a929b9fe5867f91c3f
+
+PODS: 
+- JSONKit (1.5pre)
+- SocketRocket (0.2.0)
+- UIDeviceAddition (1.0)
+- ZBarSDK (1.2.2)
 
 COCOAPODS: 0.15.1
 
 DEPENDENCIES: 
+- JSONKit
 - SocketRocket
+- UIDeviceAddition
 - ZBarSDK
-
-PODS: 
-- SocketRocket (0.2.0)
-- ZBarSDK (1.2.2)

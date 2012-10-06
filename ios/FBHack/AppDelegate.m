@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "ViewController.h"
+#import "ConnectViewController.h"
 
 @implementation AppDelegate
 
@@ -16,10 +16,22 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    
+    // Set up connector controller
+    ConnectViewController *connectViewController = [[ConnectViewController alloc] initWithNibName:@"ConnectViewController" bundle:nil];
+    self.viewController = [[UINavigationController alloc] initWithRootViewController:connectViewController];
+    
+    // Apply style
+    [self applyStyle];
+    
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)applyStyle
+{
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

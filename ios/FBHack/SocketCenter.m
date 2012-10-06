@@ -14,15 +14,12 @@
 
 @interface SocketCenter () <SRWebSocketDelegate>
 @property (nonatomic, strong) SRWebSocket *socket;
-@property (nonatomic, strong) NSMutableDictionary *delegateMap;
 @end
 
 @implementation SocketCenter
 
+@synthesize delegate = _delegate;
 @synthesize socket = _socket;
-@synthesize delegateMap = _delegateMap;
-
-static SocketCenter *sharedCenter = nil;
 
 -(void)dealloc
 {
@@ -31,45 +28,15 @@ static SocketCenter *sharedCenter = nil;
     }
 }
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        _delegateMap = [[NSMutableDictionary alloc] initWithCapacity:1];
-    }
-    return self;
-}
-
 #pragma mark - Class Factory Methods
 
-+ (id)centerWithRoomID:(NSString *)roomID;
++ (id)centerWithRoomID:(NSString *)roomID andDelegate:(id<SocketCenterDelegate>)delegate
 {
-    SocketCenter *center = [self sharedCenter];
+    SocketCenter *center = [[self alloc] init];
+    center.delegate = delegate;
     NSURL *roomURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", kBaseURL,roomID]];
     center.socket = [[SRWebSocket alloc] initWithURL:roomURL];
     return center;
-}
-
-+ (id)sharedCenter
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedCenter = [[self alloc] init];
-    });
-    return sharedCenter;
-}
-
-#pragma mark - Instance Methods
-
-- (void)registerForEvent:(NSString *)event withDelegate:(id<SocketCenterDelegate>)delegate
-{
-    if (![self.delegateMap objectForKey:event]) {
-        [self.delegateMap setObject:[NSMutableSet setWithObject:delegate] forKey:event];
-    }
-    else
-    {
-        [[self.delegateMap objectForKey:event] addObject:delegate];
-    }
 }
 
 
@@ -78,7 +45,12 @@ static SocketCenter *sharedCenter = nil;
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message
 {
     NSLog(@"Socket Receive: %@!", message);
+    // TODO: parse message and alert proper delegates
     
+    if(self.delegate)
+    {
+        
+    }
     
 }
 
