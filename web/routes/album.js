@@ -22,7 +22,7 @@ exports.view_album = function (req, res) {
 };
 
 /**
- * POST /album/:id
+ * POST /api/album/:id
  * body of request should be json as:
  * {
  *  type: "EVENT_TYPE",
@@ -52,7 +52,7 @@ exports.create_album_view = function (req, res) {
 };
 
 /**
- * POST /album
+ * POST /api/album/create
  * Actually creates a album on the backend
  */
 exports.create_album = function (req, res) {
@@ -64,4 +64,21 @@ exports.create_album = function (req, res) {
   }
   res.send(sc.INTERNAL_SERVER_ERROR);
 };
+
+
+/**
+ * GET /api/album/:id
+ * GET /api/album/:id/:cursor
+ */
+exports.get_album_content = function (req, res) {
+  var aid = req.params.id
+    , cursor = req.params.cursor;
+  Model.Album.getContents(aid, cursor, function (err, contents) {
+    if (err) {
+      res.send(BAD_REQUEST, err);
+      return;
+    }
+    res.json(contents);
+  });
+}
 
