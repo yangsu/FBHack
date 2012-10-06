@@ -95,8 +95,6 @@ FBHack.Collections.StreamCollection = Backbone.Collection.extend({
 	    var newdata = transform(data);
 	    self.add(newdata, {silent: true});
 	    self.trigger('add');
-	    console.log(self.maxPos);
-	    console.log(self.length);
 	  // });
         }
       }));
@@ -117,7 +115,11 @@ FBHack.Collections.StreamCollection = Backbone.Collection.extend({
           console.log('fetch '+ cursor);
           if (cursor && cursor.length) {
             $.get('http://23.23.206.35/api/album/' + id + '/' + cursor, function (data) {
-              self.add(transform(data));
+              var newdata = transform(data);
+              if (newdata.length) {
+                self.add(newdata, {silent: true});
+                self.trigger('add')
+              }
             });
           }
         }
