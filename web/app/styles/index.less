@@ -279,7 +279,7 @@ a.f-ref {
   }
 }
 .box {
-  border-top:1px solid #f2f2f2;
+  // border:1px solid #f2f2f2;
   // float:left;
   padding:20px;
   overflow:hidden;
@@ -327,6 +327,23 @@ a.f-ref {
     content:'';
   }
 }
+
+@border-settings: 1px solid #CCC;
+
+.border-r {
+  border-right: @border-settings;
+}
+.border-l {
+  border-left: @border-settings;
+}
+.border-t {
+  border-top: @border-settings;
+}
+.border-b {
+  border-bottom: @border-settings;
+}
+
+
 .img-cont {
   height:40%;
   width:100%;
@@ -381,12 +398,7 @@ a.f-ref {
 .title-top h3 {
   padding-top:0px;
 }
-.box-b-r {
-  border-right:1px solid #f2f2f2;
-}
-.box-b-l {
-  border-left:1px solid #f2f2f2;
-}
+
 .box-expanded {
   border:none;
   padding:50px;

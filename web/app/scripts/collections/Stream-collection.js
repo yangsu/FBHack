@@ -13,38 +13,43 @@ FBHack.Collections.StreamCollection = Backbone.Collection.extend({
 	left1 = 0, left2 = 0,
 	lastTopH = 0, lastBotH = 0,
 	lastTopW = 0, lastBotW = 0,
-	diff = 0;
+	diff = 0, border;
       for (i = 0; i < this.length; i++) {
 	  w = this.getRandomDimension();
+	  border = '';
 	  if (left1 > left2) {
+	      border = 'border-t';
 	      left = left2;
-	      diff = Math.floor((left1 - left2)/width * 100);
+	      diff = left1 - left2;
 	      if (Math.random() >= 0.5 && diff >= 25 && _.contains(this.dimensions, diff)) {
 		w = diff;
 		left2 = left1;
 	      } else {
-		left2 += w/100 * width;
+		left2 += w;
+		// border += ' border-r';
 	      }
-	      top = lastTopH/100 * height;
+	      top = lastTopH;
 	      h = 100 - lastTopH;
 	      lastBotH = h;
 	      lastBotW = w;
 	  } else if (left2 > left1) {
 	      left = left1;
-	      diff = Math.floor((left2 - left1)/width * 100);
+	      diff = left2 - left1;
 	      if (Math.random() >= 0.5 && diff >= 25 && _.contains(this.dimensions, diff)) {
 		w = diff;
 		left1 = left2;
 	      } else {
-		left1 += w/100 * width;
+		left1 += w;
+		// border = ' border-r';
 	      }
 	      top = 0;
 	      h = 100 - lastBotH;
 	      lastTopH = h;
 	      lastTopW = w;
 	  } else {
+	      // border = ' border-r';
 	      left = left1;
-	      left1 += w/100 * width;
+	      left1 += w;
 	      top = 0;
 	      h = this.getRandomDimension();
 	      lastTopH = h;
@@ -53,8 +58,9 @@ FBHack.Collections.StreamCollection = Backbone.Collection.extend({
 	  var vals = {
 	    w: w,
 	    h: h,
-	    left: left,
-	    top: top
+	    l: left,
+	    t: top,
+	    border: border
 	  };
 	  this.at(i).set(vals);
 	}
