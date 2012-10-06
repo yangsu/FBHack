@@ -70,6 +70,7 @@ app.get('/', routes.index);
 // Web app routes
 app.get('/album/create', routes.create_album_view);
 app.get('/album/:id', routes.view_album);
+app.get('/qr/:str', routes.qr_encode);
 
 // API
 app.post('/album/create', routes.create_album);
