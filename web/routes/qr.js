@@ -14,7 +14,9 @@ exports.qr_encode = function (req, res) {
         res.set('Content-Type', 'image/png');
         res.send(png);
       });
-      encoder.encode(strToEncode);
+      encoder.encode(strToEncode, null, {
+        dot_size: 16
+      });
   } else {
     res.send(sc.BAD_REQUEST);
   }
