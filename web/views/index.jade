@@ -2,12 +2,12 @@ extends layout
 
 block content
   div#main.container(role="main")
+    a(href='#init') #init
     a(href='#room') #room
     a(href='#invite') #invite
     div#init.page
+      div#stream
+    div#room.page(style='display: none;')
       div.content
-        div#stream
-    div#room.page
-      div.content
-    div#invite.page
+    div#invite.page(style='display: none;')
       div.content
