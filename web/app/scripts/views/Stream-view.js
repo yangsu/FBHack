@@ -1,5 +1,5 @@
 FBHack.Views.StreamView = Backbone.View.extend({
-  el: '#stream',
+  el: '#main',
   template: FBHack.getTemplate('stream'),
   qrTemplate: FBHack.getTemplate('qr'),
   model: FBHack.Collections.StreamCollection,
@@ -18,12 +18,6 @@ FBHack.Views.StreamView = Backbone.View.extend({
   },
   fetchNext: function () {
     this.model.fetchNext();
-  },
-  renderAdditional: function (newModels) {
-    // this.model.computeLayout(this.$el.width(), this.$el.height());
-    // this.$el.find('#stream_container').append(this.template({
-    //   images: newModels.toJSON()
-    // }));
   },
   render: function () {
     this.$el.find('#stream_container').html(this.template({
