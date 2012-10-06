@@ -17,6 +17,8 @@
 		E550813D161F8B6100026D32 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E550813C161F8B6100026D32 /* Default@2x.png */; };
 		E550813F161F8B6100026D32 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E550813E161F8B6100026D32 /* Default-568h@2x.png */; };
 		E5508163161F93C200026D32 /* SocketCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = E5508162161F93C200026D32 /* SocketCenter.m */; };
+		E5556C4A162077B7002C61A6 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = E5556C48162077B7002C61A6 /* check.png */; };
+		E5556C4B162077B7002C61A6 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5556C49162077B7002C61A6 /* check@2x.png */; };
 		E5C62BE416204D050004C68A /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C62BE216204D050004C68A /* arrow.png */; };
 		E5C62BE516204D050004C68A /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C62BE316204D050004C68A /* arrow@2x.png */; };
 		E5C62BE916204F640004C68A /* arrow2.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C62BE716204F640004C68A /* arrow2.png */; };
@@ -64,6 +66,8 @@
 		E550813E161F8B6100026D32 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E5508161161F93C200026D32 /* SocketCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketCenter.h; sourceTree = "<group>"; };
 		E5508162161F93C200026D32 /* SocketCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketCenter.m; sourceTree = "<group>"; };
+		E5556C48162077B7002C61A6 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		E5556C49162077B7002C61A6 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
 		E5C62BE216204D050004C68A /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		E5C62BE316204D050004C68A /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		E5C62BE716204F640004C68A /* arrow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow2.png; sourceTree = "<group>"; };
@@ -240,6 +244,8 @@
 		E5D599AF162009880089D7C3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E5556C48162077B7002C61A6 /* check.png */,
+				E5556C49162077B7002C61A6 /* check@2x.png */,
 				E5C62BE716204F640004C68A /* arrow2.png */,
 				E5C62BE816204F640004C68A /* arrow2@2x.png */,
 				E5C62BE216204D050004C68A /* arrow.png */,
@@ -346,6 +352,8 @@
 				E5C62BE516204D050004C68A /* arrow@2x.png in Resources */,
 				E5C62BE916204F640004C68A /* arrow2.png in Resources */,
 				E5C62BEA16204F640004C68A /* arrow2@2x.png in Resources */,
+				E5556C4A162077B7002C61A6 /* check.png in Resources */,
+				E5556C4B162077B7002C61A6 /* check@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,7 +434,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -446,7 +454,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -460,7 +468,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FBHack/FBHack-Prefix.pch";
 				INFOPLIST_FILE = "FBHack/FBHack-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -473,7 +481,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FBHack/FBHack-Prefix.pch";
 				INFOPLIST_FILE = "FBHack/FBHack-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

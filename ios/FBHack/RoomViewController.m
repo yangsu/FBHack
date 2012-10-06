@@ -25,7 +25,8 @@
 @property (nonatomic, strong) UIImageView *selectedImageView;
 @property (nonatomic, copy) NSString *selectedImageURL;
 @property (nonatomic, strong) ContentPusher *contentPusher;
-@property (nonatomic, strong) DACircularProgressView *progressView;
+@property (nonatomic, strong) UIActivityIndicatorView *progressView;
+@property (nonatomic, strong) UIImageView *checkView;
 @end
 
 @implementation RoomViewController
@@ -41,6 +42,7 @@
 @synthesize selectedImageURL = _selectedImageURL;
 @synthesize contentPusher = _contentPusher;
 @synthesize progressView = _progressView;
+@synthesize checkView = _checkView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -66,14 +68,26 @@
 {
     NSLog(urlString);
     self.selectedImageURL = urlString;
+    [self.progressView stopAnimating];
+
+    [UIView animateWithDuration:1
+                          delay:0
+                        options: UIViewAnimationCurveLinear
+                     animations:^{
+                         self.checkView.alpha = 1;
+                         self.progressView.alpha = 0;
+                     }
+                     completion:^(BOOL finished){
+                     }];
+
 }
 
 -(void)uploadProgressedToPercentage:(CGFloat)percentage
 {
 //    self.progressView.hidden = !( percentage > 0.0 && percentage < 1.0 );
 //    self.progres
-    [self.progressView setProgress:percentage animated:YES];
-    self.progressView.alpha = 1;
+//    [self.progressView setProgress:percentage animated:YES];
+//    self.progressView.alpha = 1;
 }
 
 -(void)uploadFailedWithError:(NSError*)error
@@ -86,20 +100,15 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
     UIImage *selectedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
    	[self.imgurUploader uploadImage:selectedImage];
-    
     [self.selectedImageView setImage:selectedImage];
-    
     self.selectedImageView.center = CGPointMake(self.view.center.x, self.view.center.y - 30);
-    
     self.selectedImageView.alpha = 1;
-    
     self.helperView.alpha = 0;
-
-
-    [self dismissViewControllerAnimated:YES completion:nil];
+    self.progressView.alpha = 1;
+    [self.progressView startAnimating];
 }
 
 
@@ -121,8 +130,6 @@
 
 - (void)handlePanFrom:(UIPanGestureRecognizer*)recognizer
 {
-    CGPoint translation = [recognizer translationInView:recognizer.view];
-    CGPoint velocity = [recognizer velocityInView:recognizer.view];
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         if (self.selectedImageURL) {
@@ -143,10 +150,10 @@
                                                      options: UIViewAnimationCurveLinear
                                                   animations:^{
                                                       self.helperView.alpha = 1;
-                                                      self.progressView.alpha = 0;
+                                                      self.checkView.alpha = 0;
                                                   }
                                                   completion:^(BOOL finished){
-                                                      [self.progressView setProgress:0 animated:NO];
+                                                      self.selectedImageView.image = nil;
                                                   }];
                              }];
         }
@@ -188,9 +195,15 @@
     [self.youtubeButton makeAwesomeWithIcon:FAIconFacetimeVideo];
 
 
-    self.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(280, 12, 20, 20)];
-    self.progressView.trackTintColor = [UIColor clearColor];
+    self.progressView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    self.progressView.frame = CGRectMake(280, 12, 20, 20);
     [self.navigationController.navigationBar addSubview:self.progressView];
+    
+    self.checkView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"check"]];
+    self.checkView.frame = CGRectMake(280, 12, 20, 20);
+    self.checkView.alpha = 0;
+    [self.navigationController.navigationBar addSubview:self.checkView];
+
     
     
     
@@ -211,6 +224,7 @@
     self.contentPusher = [ContentPusher pusherWithRoomID:roomID];
 
 }
+
 
 
 @end

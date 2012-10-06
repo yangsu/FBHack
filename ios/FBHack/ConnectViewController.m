@@ -16,18 +16,19 @@
 
 
 @interface ConnectViewController ()<ZBarReaderDelegate>
-
+@property (nonatomic, strong) NSMutableSet *joinedRooms;
 @end
 
 @implementation ConnectViewController
 
 @synthesize connectButton = _connectButton;
+@synthesize joinedRooms = _joinedRooms;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _joinedRooms = [[NSMutableSet alloc] initWithCapacity:1];
     }
     return self;
 }
@@ -49,8 +50,12 @@
     [self.connectButton.layer setShadowOpacity:0.8];
     [self.connectButton.layer setShadowRadius:2.0];
     [self.connectButton.layer setShadowColor:[UIColor blackColor].CGColor];
-
     
+
+    if ([self.joinedRooms count] != 0) {
+        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:@"Albums" style:UIBarButtonItemStylePlain target:self action:@selector(albumPressed:)];
+        self.navigationItem.leftBarButtonItem = button;
+    }    
 }
 
 #pragma mark - Instance Methods
@@ -62,6 +67,12 @@
     roomViewController.title = @"Push Dis";
     [self.navigationController pushViewController:roomViewController animated:YES];
 }
+
+- (IBAction)albumPressed:(UIButton *)sender
+{
+    
+}
+
 
 - (IBAction)connectPressed:(UIButton *)sender
 {
@@ -98,9 +109,10 @@
     
     ZBarSymbolSet *symbols = [info objectForKey: ZBarReaderControllerResults];
     for (ZBarSymbol *symbol in symbols) {
-        NSLog(symbol.data);
+        //NSLog(symbol.data);
         NSArray* result = [symbol.data componentsSeparatedByString: @":"];
         roomID = [result objectAtIndex: 0];
+        [self.joinedRooms addObject:roomID];
         roomName = [result objectAtIndex: 1];
     }
     

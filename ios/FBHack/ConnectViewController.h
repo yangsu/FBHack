@@ -16,7 +16,12 @@
 
 - (IBAction)nextPressed:(UIButton *)sender;
 
+- (IBAction)albumPressed:(UIButton *)sender;
+
+
 @property (nonatomic, weak) IBOutlet BButton *connectButton;
+
+
 
 
 @end
