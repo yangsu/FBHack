@@ -30,9 +30,9 @@ FBHack.Routers.ApplicationRouter = Backbone.Router.extend({
     var self = this;
     FBHack.Collections.StreamCollection.fromOwnAPI(id, function (stream) {
       self.view = new FBHack.Views.StreamView({
-        model: stream,
-        id: id
+        model: stream
       });
+      self.view.id = id;
       self.view.render();
     });
   }
