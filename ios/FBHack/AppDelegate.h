@@ -11,8 +11,13 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+- (void)openSession;
+
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) UIViewController *viewController;
+@property (strong, nonatomic) UIViewController *mainViewController;
+
+@property (strong, nonatomic) UINavigationController *navController;
+
 
 @end

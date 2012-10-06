@@ -25,6 +25,9 @@
 		E5D59960161FCB3F0089D7C3 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D5995C161FCB3F0089D7C3 /* NSString+URLEncoding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E5D59961161FCB3F0089D7C3 /* NSString+URLEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D5995E161FCB3F0089D7C3 /* NSString+URLEscape.m */; };
 		E5D59964161FCC010089D7C3 /* ImgurUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D59963161FCC010089D7C3 /* ImgurUploader.m */; };
+		E5D59986161FEBE70089D7C3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D59984161FEBE70089D7C3 /* LoginViewController.m */; };
+		E5D59987161FEBE70089D7C3 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5D59985161FEBE70089D7C3 /* LoginViewController.xib */; };
+		E5D59994161FF5240089D7C3 /* ContentPusher.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D59993161FF5240089D7C3 /* ContentPusher.m */; };
 		F261C23496614EB98F9BC3A8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AC35024E7247AF84CB5FB1 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +63,11 @@
 		E5D5995E161FCB3F0089D7C3 /* NSString+URLEscape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEscape.m"; sourceTree = "<group>"; };
 		E5D59962161FCC010089D7C3 /* ImgurUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgurUploader.h; sourceTree = "<group>"; };
 		E5D59963161FCC010089D7C3 /* ImgurUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgurUploader.m; sourceTree = "<group>"; };
+		E5D59983161FEBE70089D7C3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		E5D59984161FEBE70089D7C3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		E5D59985161FEBE70089D7C3 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		E5D59992161FF5240089D7C3 /* ContentPusher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentPusher.h; sourceTree = "<group>"; };
+		E5D59993161FF5240089D7C3 /* ContentPusher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentPusher.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +166,9 @@
 				E5D5994F161FBD670089D7C3 /* RoomViewController.h */,
 				E5D59950161FBD670089D7C3 /* RoomViewController.m */,
 				E5D59951161FBD670089D7C3 /* RoomViewController.xib */,
+				E5D59983161FEBE70089D7C3 /* LoginViewController.h */,
+				E5D59984161FEBE70089D7C3 /* LoginViewController.m */,
+				E5D59985161FEBE70089D7C3 /* LoginViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -169,6 +180,8 @@
 				E5D59963161FCC010089D7C3 /* ImgurUploader.m */,
 				E5508161161F93C200026D32 /* SocketCenter.h */,
 				E5508162161F93C200026D32 /* SocketCenter.m */,
+				E5D59992161FF5240089D7C3 /* ContentPusher.h */,
+				E5D59993161FF5240089D7C3 /* ContentPusher.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -244,6 +257,7 @@
 				E550813F161F8B6100026D32 /* Default-568h@2x.png in Resources */,
 				E5D5994E161FB1030089D7C3 /* ConnectViewController.xib in Resources */,
 				E5D59953161FBD670089D7C3 /* RoomViewController.xib in Resources */,
+				E5D59987161FEBE70089D7C3 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +294,8 @@
 				E5D59960161FCB3F0089D7C3 /* NSString+URLEncoding.m in Sources */,
 				E5D59961161FCB3F0089D7C3 /* NSString+URLEscape.m in Sources */,
 				E5D59964161FCC010089D7C3 /* ImgurUploader.m in Sources */,
+				E5D59986161FEBE70089D7C3 /* LoginViewController.m in Sources */,
+				E5D59994161FF5240089D7C3 /* ContentPusher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,9 @@
-platform :ios
+platform :ios, '5.1'
 
 pod 'SocketRocket'
 pod 'ZBarSDK'
 pod 'UIDeviceAddition'
 pod 'SBJson'
+pod 'Facebook-iOS-SDK'
+pod 'AFNetworking'
+

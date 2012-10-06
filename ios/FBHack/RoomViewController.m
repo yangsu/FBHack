@@ -10,6 +10,7 @@
 
 #import "SocketCenter.h"
 #import "ImgurUploader.h"
+#import "ContentPusher.h"
 
 #define kEventNewContent @"NEW_CONTENT"
 #define kEventSetLike @"SET_LIKES"
@@ -19,6 +20,7 @@
 @property (nonatomic, strong) SocketCenter *socketCenter;
 @property (nonatomic, strong) ImgurUploader *imgurUploader;
 @property (nonatomic, strong) UIButton *selectedImageButton;
+@property (nonatomic, strong) ContentPusher *contentPusher;
 @end
 
 @implementation RoomViewController
@@ -27,6 +29,7 @@
 @synthesize socketCenter = _socketCenter;
 @synthesize imgurUploader = _imgurUploader;
 @synthesize selectedImageButton = selectedImageButton;
+@synthesize contentPusher = _contentPusher;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -50,7 +53,8 @@
 
 -(void)imageUploadedWithURLString:(NSString*)urlString
 {
-    // TODO: Update with image
+   [self.contentPusher pushContent:urlString];
+    NSLog(urlString);
 }
 
 -(void)uploadProgressedToPercentage:(CGFloat)percentage
@@ -60,7 +64,8 @@
 
 -(void)uploadFailedWithError:(NSError*)error
 {
-    
+    NSLog(@"%@", error);
+
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -83,7 +88,12 @@
 {
     CGPoint point = [[[event allTouches] anyObject] locationInView:self.view];
     UIControl *control = sender;
+    
+    CGPoint delta = CGPointMake(point.x - control.center.x, point.y - control.center.y);
+
     control.center = point;
+
+
 }
 
 - (IBAction)imageReleased:(id)sender withEvent:(UIEvent *)event
@@ -142,6 +152,8 @@
 {
     _roomID = [roomID copy];
     self.socketCenter = [SocketCenter centerWithRoomID:roomID andDelegate:self];
+    self.contentPusher = [ContentPusher pusherWithRoomID:roomID];
+
 }
 
 

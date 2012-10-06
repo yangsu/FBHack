@@ -56,7 +56,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-	[delegate uploadFailedWithError:error];
+	[_delegate uploadFailedWithError:error];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -66,7 +66,7 @@
 
 - (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
-	[delegate uploadProgressedToPercentage:(CGFloat)totalBytesWritten/(CGFloat)totalBytesExpectedToWrite];
+	[_delegate uploadProgressedToPercentage:(CGFloat)totalBytesWritten/(CGFloat)totalBytesExpectedToWrite];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -83,7 +83,7 @@
 {
 	//NSLog(@"Parse Finished");
 	//	NSLog(@"%@", thought);
-	[delegate imageUploadedWithURLString:imageURL];
+	[_delegate imageUploadedWithURLString:imageURL];
 }
 
 

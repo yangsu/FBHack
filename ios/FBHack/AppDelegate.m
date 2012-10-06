@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 
 #import "ConnectViewController.h"
+#import "FacebookSDK.h"
+#import "LoginViewController.h"
 
 @implementation AppDelegate
 
@@ -18,20 +20,100 @@
     // Override point for customization after application launch.
     
     // Set up connector controller
-    ConnectViewController *connectViewController = [[ConnectViewController alloc] initWithNibName:@"ConnectViewController" bundle:nil];
-    self.viewController = [[UINavigationController alloc] initWithRootViewController:connectViewController];
+    self.mainViewController = [[ConnectViewController alloc] initWithNibName:@"ConnectViewController" bundle:nil];
+    self.navController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
     
     // Apply style
     [self applyStyle];
     
-    self.window.rootViewController = self.viewController;
+    self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
+    
+//    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+//        // To-do, show logged in view
+//        [self openSession];
+//    } else {
+//        // No, display the login page.
+//        [self showLoginView];
+//    }
+    
     return YES;
+}
+
+- (void)showLoginView
+{
+    UIViewController *topViewController = [self.navController topViewController];
+    UIViewController *modalViewController = [topViewController modalViewController];
+    
+    // If the login screen is not already displayed, display it. If the login screen is
+    // displayed, then getting back here means the login in progress did not successfully
+    // complete. In that case, notify the login view so it can update its UI appropriately.
+    if (![modalViewController isKindOfClass:[LoginViewController class]]) {
+        LoginViewController* loginViewController = [[LoginViewController alloc]
+                                                      initWithNibName:@"LoginViewController"
+                                                      bundle:nil];
+        [topViewController presentModalViewController:loginViewController animated:NO];
+    } else {
+        LoginViewController* loginViewController =
+        (LoginViewController*)modalViewController;
+        [loginViewController loginFailed];
+    }
 }
 
 - (void)applyStyle
 {
     
+}
+
+#pragma mark - Facebook SDK
+
+- (void)sessionStateChanged:(FBSession *)session
+                      state:(FBSessionState) state
+                      error:(NSError *)error
+{
+    switch (state) {
+        case FBSessionStateOpen: {
+            UIViewController *topViewController =
+            [self.navController topViewController];
+            if ([[topViewController modalViewController]
+                 isKindOfClass:[LoginViewController class]]) {
+                [topViewController dismissModalViewControllerAnimated:YES];
+            }
+        }
+            break;
+        case FBSessionStateClosed:
+        case FBSessionStateClosedLoginFailed:
+            // Once the user has logged in, we want them to
+            // be looking at the root view.
+            [self.navController popToRootViewControllerAnimated:NO];
+            
+            [FBSession.activeSession closeAndClearTokenInformation];
+            
+            [self showLoginView];
+            break;
+        default:
+            break;
+    }
+    
+    if (error) {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:error.localizedDescription
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+
+- (void)openSession
+{
+    [FBSession openActiveSessionWithReadPermissions:nil
+                                       allowLoginUI:YES
+                                  completionHandler:
+     ^(FBSession *session,FBSessionState state, NSError *error) {
+         [self sessionStateChanged:session state:state error:error];
+     }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -54,11 +136,21 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    [FBSession.activeSession handleDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return [FBSession.activeSession handleOpenURL:url];
 }
 
 @end
