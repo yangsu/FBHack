@@ -3,7 +3,22 @@
  * GET /album/:id
  */
 exports.view_album = function (req, res) {
-  res.render('index', { title: 'Room' });
+  var aid = req.params.id;
+  // temporary album view for testing
+  redis.get(aid, function (err, reply) {
+    var replyObj = JSON.parse(reply);
+    console.log(replyObj);
+    if (replyObj && replyObj.queue && _.isArray(replyObj.queue)) {
+      redis.mget(replyObj.queue, function (err, images) {
+        var links = _(images).map(function (img) {
+          return JSON.parse(img).link;
+        });
+        res.render('album', { title: 'Room', photos: links });
+      });
+    } else {
+      res.send(sc.INTERNAL_SERVER_ERROR);
+    }
+  });
 };
 
 /**
