@@ -46,10 +46,19 @@ var routes = _.chain(fs.readdirSync('routes/'))
   }, {})
   .value();
 
+// homepage
 app.get('/', routes.index);
+
+// room creation and viewing
 app.get('/room/create', routes.create_room);
 app.get('/room/:id', routes.view_room);
 
+// posting content to a room
+app.post('/room/:id', routes.push_content);
+
+/**
+ * Start Server
+ */
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
