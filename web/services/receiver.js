@@ -14,7 +14,7 @@ module.exports = {
 
   handleEvent: function (event, res) {
     switch (event.type) {
-    case "PUSH_CONTENT":
+    case "PUSH_PHOTO":
       var aid = event.aid
         , payload = event.payload;
       if (payload.link && _.isString(payload.link)) {
