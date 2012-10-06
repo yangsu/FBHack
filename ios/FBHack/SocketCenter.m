@@ -14,11 +14,13 @@
 
 @interface SocketCenter () <SRWebSocketDelegate>
 @property (nonatomic, strong) SRWebSocket *socket;
+@property (nonatomic, strong) NSMutableDictionary *delegateMap;
 @end
 
 @implementation SocketCenter
 
 @synthesize socket = _socket;
+@synthesize delegateMap = _delegateMap;
 
 static SocketCenter *sharedCenter = nil;
 
@@ -27,6 +29,15 @@ static SocketCenter *sharedCenter = nil;
     if (!_socket) {
         [_socket close];
     }
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _delegateMap = [[NSMutableDictionary alloc] initWithCapacity:1];
+    }
+    return self;
 }
 
 #pragma mark - Class Factory Methods
@@ -48,11 +59,27 @@ static SocketCenter *sharedCenter = nil;
     return sharedCenter;
 }
 
+#pragma mark - Instance Methods
+
+- (void)registerForEvent:(NSString *)event withDelegate:(id<SocketCenterDelegate>)delegate
+{
+    if (![self.delegateMap objectForKey:event]) {
+        [self.delegateMap setObject:[NSMutableSet setWithObject:delegate] forKey:event];
+    }
+    else
+    {
+        [[self.delegateMap objectForKey:event] addObject:delegate];
+    }
+}
+
+
 #pragma mark - SRWebSocketDelegate
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message
 {
     NSLog(@"Socket Receive: %@!", message);
+    
+    
 }
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket

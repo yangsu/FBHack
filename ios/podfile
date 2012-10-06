@@ -2,3 +2,5 @@ platform :ios
 
 pod 'SocketRocket'
 pod 'ZBarSDK'
+pod 'UIDeviceAddition'
+pod 'JSONKit'
