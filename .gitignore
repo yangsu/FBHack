@@ -25,4 +25,8 @@ npm-debug.log
 .DS_Store
 
 # LESS
-style.css
+index.css
+
+# Yeoman
+temp
+dist
