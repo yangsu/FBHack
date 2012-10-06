@@ -1,11 +1,20 @@
 FBHack.Views.StreamView = Backbone.View.extend({
   el: '#stream',
   template: FBHack.getTemplate('stream'),
+  qrTemplate: FBHack.getTemplate('qr')
   model: FBHack.Collections.StreamCollection,
   initialize: function () {
     this.model.on('add', this.render, this);
   },
   events: {
+    'click #qr': 'showQR'
+  },
+  showQR: function () {
+    $('#qr')
+      .find('.content')
+      .html(this.qrTemplate({ id : this.model.get('id') }))
+      .end()
+    .show('slow');
   },
   fetchNext: function () {
     this.model.fetchNext();

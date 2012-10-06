@@ -3,14 +3,11 @@ extends layout
 block content
   div#main.container(role="main")
     a(href='#init') #init
-    a(href='#room') #room
-    a(href='#invite') #invite
+    a(href='#qr') #qr
     div#init.page
       div#stream
         div#stream_container
           div#loader_container
             img(id='loader', src='images/284.gif')
-    div#room.page(style='display: none;')
-      div.content
-    div#invite.page(style='display: none;')
+    div#qr(style='display: none;')
       div.content
