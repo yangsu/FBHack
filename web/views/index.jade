@@ -1,5 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div#main.container(role="main")
+    a(href='#room') #room
+    a(href='#invite') #invite
+    div#init.page
+      div.content
+	p blah
+    div#room.page
+      div.content
+	p blah
+    div#invite.page
+      div.content
+	p blah
