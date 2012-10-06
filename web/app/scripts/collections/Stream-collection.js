@@ -97,7 +97,7 @@ FBHack.Collections.StreamCollection = Backbone.Collection.extend({
           return { src: item.payload.link };
         });
       }
-      cb(_.extend(new FBHack.Collections.StreamCollection(images), {
+      cb(_.extend(new FBHack.Collections.StreamCollection(transform(data)), {
         fetchNext: function () {
           var self = this,
             cursor = self.at(self.length - 1).get('cid');
