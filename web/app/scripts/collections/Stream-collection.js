@@ -102,7 +102,7 @@ FBHack.Collections.StreamCollection = Backbone.Collection.extend({
     return this;
   },
   fromOwnAPI: function (id, cb) {
-    $.get('http://23.23.206.35/api/album/' + id, function (data) {
+    $.get('http://localhost:3000/api/album/' + id, function (data) {
       function transform(data) {
         return _.map(data, function (item) {
           return { src: item.payload.link };
@@ -114,7 +114,7 @@ FBHack.Collections.StreamCollection = Backbone.Collection.extend({
             cursor = self.at(self.length - 1).get('cid');
           console.log('fetch '+ cursor);
           if (cursor && cursor.length) {
-            $.get('http://23.23.206.35/api/album/' + id + '/' + cursor, function (data) {
+            $.get('http://localhost:3000/api/album/' + id + '/' + cursor, function (data) {
               var newdata = transform(data);
               if (newdata.length) {
                 self.add(newdata, {silent: true});

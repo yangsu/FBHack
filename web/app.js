@@ -17,6 +17,8 @@ contentReceiver = require('./services/receiver');
 sc = require('./lib/statuscode');
 server = http.createServer(app);
 io = require('socket.io').listen(server);
+EventEmitter = require('events').EventEmitter;
+events = new EventEmitter();
 
 // Set up redis
 redis = require('redis').createClient(
@@ -86,7 +88,10 @@ app.get('/:id', routes.view_album); // catch all
  * Set up socket.io
  */
 io.sockets.on('connection', function (socket) {
-  console.log(socket);
+  events.on('test', function (content) {
+    console.log(content);
+    socket.emit('new_content', content);
+  });
 });
 
 /**
