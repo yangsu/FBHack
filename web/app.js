@@ -13,6 +13,8 @@ var express = require('express')
  */
 _ = require('underscore');
 app = express();
+contentReceiver = require('./services/receiver');
+sc = require('./lib/statusCode');
 
 app.configure(function(){
   app.set('port', process.env.FBHACK_PORT || 3000);
@@ -54,7 +56,7 @@ app.get('/room/create', routes.create_room);
 app.get('/room/:id', routes.view_room);
 
 // posting content to a room
-app.post('/room/:id', routes.push_content);
+app.post('/room/:id', routes.receive_content);
 
 /**
  * Start Server
