@@ -8,7 +8,7 @@ FBHack.Views.StreamView = Backbone.View.extend({
   },
   events: {
     'click #qrlink': 'showQR',
-    'click #qrlink .x': 'hideQR'
+    'click .modal .x': 'hideQR'
   },
   showQR: function (e) {
     $('#qr')
