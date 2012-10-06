@@ -17,13 +17,13 @@ FBHack.Views.StreamView = Backbone.View.extend({
         .find('.content')
         .html(this.qrTemplate({ id : this.id }))
         .end()
-      .show('slow');
+      .slideDown('slow');
       this.modalVisible = true;
     }
     e.preventDefault();
   },
   hideQR: function (e) {
-    $('#qr').hide('slow');
+    $('#qr').slideUp('slow');
     this.modalVisible = false;
     e.preventDefault();
   },
