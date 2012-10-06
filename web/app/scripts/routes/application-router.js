@@ -10,7 +10,7 @@ FBHack.Routers.ApplicationRouter = Backbone.Router.extend({
       return _.extend(item, {
 	src: 'http://i.imgur.com/' + item.hash + '.jpg'
       });
-    }).slice(0, 15);
+    }).slice(0, 50);
     var stream = new FBHack.Collections.StreamCollection(images);
     var view = new FBHack.Views.StreamView({
       model: stream
