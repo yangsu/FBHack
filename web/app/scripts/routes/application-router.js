@@ -9,7 +9,7 @@ FBHack.Routers.ApplicationRouter = Backbone.Router.extend({
     $('#main').scroll(_.throttle(function (e) {
       var pos = $(e.target).scrollLeft();
       if (self.view.model.maxPos - pos <= 200) {
-	self.view.fetchNext();
+        self.view.fetchNext();
       }
     }, 50));
   },
@@ -17,7 +17,7 @@ FBHack.Routers.ApplicationRouter = Backbone.Router.extend({
     var self = this;
     FBHack.Collections.StreamCollection.fromImgurAPI(function (stream) {
       self.view = new FBHack.Views.StreamView({
-	model: stream
+        model: stream
       });
       self.view.render();
     });
@@ -26,7 +26,7 @@ FBHack.Routers.ApplicationRouter = Backbone.Router.extend({
     var self = this;
     FBHack.Collections.StreamCollection.fromOwnAPI(id, function (stream) {
       self.view = new FBHack.Views.StreamView({
-	model: stream
+        model: stream
       });
       self.view.render();
     });
