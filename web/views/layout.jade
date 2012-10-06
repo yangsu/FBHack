@@ -29,7 +29,14 @@ html(class='no-js', lang='en')
       <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a>
       to experience this site.
 
-    script(data-main='scripts/config',src='scripts/libs/require.js')
+    script(src="scripts/vendor/jquery.min.js")
+    script(src="scripts/vendor/lodash.min.js")
+    script(src="scripts/vendor/backbone-min.js")
+    script(src="scripts/main.js")
+    script(src="scripts/views/application-view.js")
+    script(src="scripts/models/application-model.js")
+    script(src="scripts/collections/application-collection.js")
+    script(src="scripts/routes/application-router.js")
 
     script
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
