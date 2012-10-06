@@ -65,14 +65,15 @@ $(document).ready(function(){
   $('#main').css('height', $(window).height() + 'px');
   FBHack.init();
   $(window).keydown(function (e) {
-    var inc = 0;
+    var inc = 0,
+      $e = $('#stream, #stream_container');
     if (e.keyCode === 37) { // left
       inc = -800;
     } else if (e.keyCode === 39) { // right
       inc = 800;
     }
-    $('#stream, #stream_container').css({
-      'margin-left': inc + 'px'
+    $e.css({
+      'margin-left': Math.max(0, Math.min((+$e.css('marginLeft') + inc), FBHack.router.view.maxPos - 200)) + 'px'
     });
   });
 });
