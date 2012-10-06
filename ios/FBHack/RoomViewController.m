@@ -14,6 +14,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BButton+FontAwesome.h"
 #import "DACircularProgressView.h"
+#import "FacebookSDK.h"
+#import "JPImagePickerController.h"
+#import "UIImageView+AFNetworking.h"
+#import "UIImageResizing.h"
 
 #define kEventNewContent @"NEW_CONTENT"
 #define kEventSetLike @"SET_LIKES"
@@ -27,6 +31,8 @@
 @property (nonatomic, strong) ContentPusher *contentPusher;
 @property (nonatomic, strong) UIActivityIndicatorView *progressView;
 @property (nonatomic, strong) UIImageView *checkView;
+//@property (nonatomic, strong) NSMutableArray *facebookPhotos;
+//@property (nonatomic, strong) NSMutableArray *completeHack;
 @end
 
 @implementation RoomViewController
@@ -43,6 +49,8 @@
 @synthesize contentPusher = _contentPusher;
 @synthesize progressView = _progressView;
 @synthesize checkView = _checkView;
+//@synthesize facebookPhotos = _facebookPhotos;
+//@synthesize completeHack = _completeHack;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -51,6 +59,10 @@
     if (self) {
         _imgurUploader = [[ImgurUploader alloc] init];
         _imgurUploader.delegate = self;
+        
+//        _facebookPhotos = [[NSMutableArray alloc] init];
+//        
+//        _completeHack = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -102,7 +114,8 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     UIImage *selectedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-   	[self.imgurUploader uploadImage:selectedImage];
+    CGSize scaled = CGSizeMake(selectedImage.size.width/4, selectedImage.size.height/4);
+   	[self.imgurUploader uploadImage:[UIImage image:selectedImage scaleToSize:scaled]];
     [self.selectedImageView setImage:selectedImage];
     self.selectedImageView.center = CGPointMake(self.view.center.x, self.view.center.y - 30);
     self.selectedImageView.alpha = 1;
@@ -123,9 +136,13 @@
 	[self presentViewController:imagePicker animated:YES completion:nil];
 }
 
-- (IBAction)youtubePressed:(id)sender
+- (IBAction)facebookPressed:(id)sender
 {
-    
+//    JPImagePickerController *picker = [[JPImagePickerController alloc] initWithNibName:nil bundle:nil];
+//    picker.delegate = self;
+//    picker.dataSource = self;
+//    [self presentViewController:picker animated:YES completion:nil];
+
 }
 
 - (void)handlePanFrom:(UIPanGestureRecognizer*)recognizer
@@ -192,7 +209,7 @@
     self.photoButton.color = [UIColor purpleColor];
     [self.photoButton makeAwesomeWithIcon:FAIconPicture];
     self.youtubeButton.color = [UIColor purpleColor];
-    [self.youtubeButton makeAwesomeWithIcon:FAIconFacetimeVideo];
+    [self.youtubeButton makeAwesomeWithIcon:FAIconFacebook];
 
 
     self.progressView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
@@ -203,10 +220,17 @@
     self.checkView.frame = CGRectMake(280, 12, 20, 20);
     self.checkView.alpha = 0;
     [self.navigationController.navigationBar addSubview:self.checkView];
+    
+//    [[FBRequest requestForGraphPath:@"me/photos"] startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+//        
+//        NSArray *infoList = [result objectForKey:@"data"];
+//        for (id item in infoList) {
+//            [self.facebookPhotos addObject:[item objectForKey:@"images"]];
+//        }
+//
+//    }];
+    
 
-    
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -225,6 +249,51 @@
 
 }
 
+//#pragma mark - JPImageDataSource
+//
+//- (NSInteger)numberOfImagesInImagePicker:(JPImagePickerController *)picker
+//{
+//    return [self.facebookPhotos count];
+//}
+//
+//
+//- (UIImage *)imagePicker:(JPImagePickerController *)picker thumbnailForImageNumber:(NSInteger)imageNumber
+//{
+//    NSDictionary *photoData = [self.facebookPhotos objectAtIndex:imageNumber];
+//    NSString *url = [photoData objectForKey:@"source"];
+//    UIImageView *temp = [[UIImageView alloc] init];
+//    [temp setImageWithURL:[NSURL URLWithString:url]];
+//    [self.completeHack addObject:temp];
+//    return temp.image;
+//    
+//}
+//
+//
+//- (UIImage *)imagePicker:(JPImagePickerController *)picker imageForImageNumber:(NSInteger)imageNumber
+//{
+//    NSDictionary *photoData = [self.facebookPhotos objectAtIndex:imageNumber];
+//    NSString *url = [photoData objectForKey:@"source"];
+//    UIImageView *temp = [[UIImageView alloc] init];
+//    [temp setImageWithURL:[NSURL URLWithString:url]];
+//    [self.completeHack addObject:temp];
+//    return temp.image;
+//}
+//
+//#pragma mark - JPImageDelegate
+//
+//
+//- (void)imagePickerDidCancel:(JPImagePickerController *)picker
+//{
+//    [self dismissModalViewControllerAnimated:YES];
+//}
+//
+//
+//- (void)imagePicker:(JPImagePickerController *)picker didFinishPickingWithImageNumber:(NSInteger)imageNumber
+//{
+//    NSDictionary *photoData = [self.facebookPhotos objectAtIndex:imageNumber];
+//    NSString *url = [photoData objectForKey:@"source"];
+//    self.selectedImageURL = url;
+//}
 
 
 @end

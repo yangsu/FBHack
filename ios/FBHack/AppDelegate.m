@@ -33,13 +33,13 @@
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
     
-//    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
-//        // To-do, show logged in view
-//        [self openSession];
-//    } else {
-//        // No, display the login page.
-//        [self showLoginView];
-//    }
+    if (FBSession.activeSession.state != FBSessionStateCreatedTokenLoaded) {
+        // To-do, show logged in view
+        [self openSession];
+    } else {
+        // No, display the login page.
+        [self showLoginView];
+    }
     
     return YES;
 }

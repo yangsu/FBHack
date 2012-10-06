@@ -302,12 +302,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">youtubePressed:</string>
+						<string key="label">facebookPressed:</string>
 						<reference key="source" ref="715605019"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">17</int>
+					<int key="connectionID">207</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1149,7 +1149,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">206</int>
+			<int key="maxID">207</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1174,20 +1174,20 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="cameraPressed:">id</string>
+						<string key="facebookPressed:">id</string>
 						<string key="photoPressed:">id</string>
-						<string key="youtubePressed:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="cameraPressed:">
 							<string key="name">cameraPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="photoPressed:">
-							<string key="name">photoPressed:</string>
+						<object class="IBActionInfo" key="facebookPressed:">
+							<string key="name">facebookPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="youtubePressed:">
-							<string key="name">youtubePressed:</string>
+						<object class="IBActionInfo" key="photoPressed:">
+							<string key="name">photoPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

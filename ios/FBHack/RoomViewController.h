@@ -13,7 +13,7 @@
 @interface RoomViewController : UIViewController
 
 - (IBAction)photoPressed:(id)sender;
-- (IBAction)youtubePressed:(id)sender;
+- (IBAction)facebookPressed:(id)sender;
 - (IBAction)cameraPressed:(id)sender;
 
 @property (nonatomic, weak) IBOutlet BButton *photoButton;
