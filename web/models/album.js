@@ -75,7 +75,6 @@ exports.Album = {
 
   get: function (aid, cb) {
     redis.get(aid, function (err, reply) {
-      console.log(reply);
       cb(err, JSON.parse(reply));
     });
   }
