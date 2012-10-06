@@ -10,16 +10,21 @@ FBHack.Views.StreamView = Backbone.View.extend({
     'click #qrlink': 'showQR',
     'click .modal .x': 'hideQR'
   },
+  modalVisible: false,
   showQR: function (e) {
-    $('#qr')
-      .find('.content')
-      .html(this.qrTemplate({ id : this.id }))
-      .end()
-    .show('slow');
+    if (this.modalVisible) {
+      $('#qr')
+        .find('.content')
+        .html(this.qrTemplate({ id : this.id }))
+        .end()
+      .show('slow');
+      this.modalVisible = true;
+    }
     e.preventDefault();
   },
   hideQR: function (e) {
     $('#qr').hide('slow');
+    this.modalVisible = false;
     e.preventDefault();
   },
   fetchNext: function () {
