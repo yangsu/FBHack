@@ -9,14 +9,20 @@ FBHack.Views.StreamView = Backbone.View.extend({
     'keydown': 'onKeyDown'
   },
   onKeyDown: function (e) {
-    console.log('test');
     var inc = 0;
     if (e.keyCode === 37) { // left
       inc = -800;
     } else if (e.keyCode === 39) { // right
       inc = 800;
     }
-    $('#stream_container').css('margin-left', inc + 'px');
+    $('#stream, #stream_container').animate({
+      'margin-left': inc + 'px'
+    }, 2000);
+    e.preventDefault();
+    e.stopPropagation();
+  },
+  fetchNext: function () {
+    this.model.fetchNext();
   },
   render: function () {
     this.$el.html(this.template({
