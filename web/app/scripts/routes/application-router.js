@@ -12,7 +12,6 @@ FBHack.Routers.ApplicationRouter = Backbone.Router.extend({
       if (!width) {
 	width = self.view.$el.width();
       }
-      console.log((self.view.model.maxPos - pos/width * 100));
       if ((self.view.model.maxPos - pos/width * 100) <= 250) {
         self.view.fetchNext();
       }
