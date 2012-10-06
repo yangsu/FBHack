@@ -54,7 +54,7 @@ exports.Album = {
       if (err) { cb(err); return; }
       var album = JSON.parse(reply);
       if (_.isArray(album.queue)) {
-        var start = (cursor) ? album.queue.indexOf(cursor) : 0
+        var start = (cursor) ? album.queue.indexOf(cursor) + 1 : 0
           , end = start + retrieveLimit;
         redis.mget(album.queue.slice(start, end), function (err, images) {
           var contents = _.zip(album.queue.slice(start, end), images)
